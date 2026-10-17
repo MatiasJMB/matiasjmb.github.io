@@ -1,0 +1,15 @@
+---
+import Fija from '../components/Fija.astro';
+import { FOTOS, altFoto } from '../data/creditos';
+import Base from '../layouts/Base.astro';
+import { rutaInicio, t } from '../i18n/ui';
+---
+
+<Base lang="es" titulo={`${t('es', 'noEncontradoTitulo')} · ${t('es', 'marca')}`} descripcion={t('es', 'noEncontradoTexto')}>
+  <section class="seccion vacio">
+    <h1 class="tit">{t('es', 'noEncontradoTitulo')}</h1>
+    <p>{t('es', 'noEncontradoTexto')}</p>
+    <a class="boton" href={rutaInicio('es')}>{t('es', 'noEncontradoVolver')}</a>
+  </section>
+  <Fija slot="fija" imagenes={[{ src: FOTOS.puerto, alt: altFoto(FOTOS.puerto, 'es') }]} activa={FOTOS.puerto} />
+</Base>

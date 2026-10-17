@@ -1,0 +1,13 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<button type="button" class="ctl" data-tema>
+  <span class="para-oscuro">{t(lang, 'temaOscuro')}</span>
+  <span class="para-claro">{t(lang, 'temaClaro')}</span>
+</button>

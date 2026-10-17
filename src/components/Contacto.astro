@@ -1,0 +1,52 @@
+---
+import { CORREO, TELEFONO, TELEFONO_HREF } from '../data/contacto';
+import { FOTOS } from '../data/creditos';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const asunto = t(lang, 'contactoAsunto');
+---
+
+<section id="contacto" class="seccion" data-imagen={FOTOS.puerto} aria-labelledby="contacto-titulo">
+  <h2 id="contacto-titulo" class="tit contacto-pregunta" data-reveal>
+    <span>{t(lang, 'contactoPregunta1')}</span>
+    <span>{t(lang, 'contactoPregunta2')}</span>
+  </h2>
+
+  <form
+    class="campo"
+    action={`mailto:${CORREO}`}
+    method="get"
+    data-contacto
+    data-correo={CORREO}
+    data-asunto={asunto}
+    data-reveal
+  >
+    <input type="hidden" name="subject" value={asunto} />
+    <label class="solo-lector" for="contacto-mensaje">{t(lang, 'contactoCampo')}</label>
+    <input
+      id="contacto-mensaje"
+      name="body"
+      type="text"
+      autocomplete="off"
+      placeholder={t(lang, 'contactoCampo')}
+    />
+    <button type="submit" aria-label={t(lang, 'contactoEnviar')}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+        <path d="M4 12h15M13 5.5 19.5 12 13 18.5" />
+      </svg>
+    </button>
+  </form>
+
+  <dl class="datos" data-reveal>
+    <dt>{t(lang, 'contactoCorreo')}</dt>
+    <dd><a href={`mailto:${CORREO}`}>{CORREO}</a></dd>
+    <dt>{t(lang, 'contactoTelefono')}</dt>
+    <dd><a href={TELEFONO_HREF}>{TELEFONO}</a></dd>
+    <dt>{t(lang, 'contactoUbicacion')}</dt>
+    <dd>{t(lang, 'contactoUbicacionValor')}</dd>
+  </dl>
+</section>

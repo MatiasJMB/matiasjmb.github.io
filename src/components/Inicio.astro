@@ -1,0 +1,35 @@
+---
+import { FOTOS, altFoto, creditos } from '../data/creditos';
+import Base from '../layouts/Base.astro';
+import { rutaInicio, t, type Lang } from '../i18n/ui';
+import type { ImagenFija } from '../lib/tipos';
+import { capturaDe, proyectosDe } from '../lib/proyectos';
+import Carta from './Carta.astro';
+import Contacto from './Contacto.astro';
+import Fija from './Fija.astro';
+import Hero from './Hero.astro';
+import Proyectos from './Proyectos.astro';
+import Trayectoria from './Trayectoria.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const alternas = { es: rutaInicio('es'), en: rutaInicio('en') };
+
+const proyectos = await proyectosDe(lang);
+const fotos: ImagenFija[] = creditos.map((c) => ({ src: c.src, alt: altFoto(c.src, lang) }));
+const capturas: ImagenFija[] = proyectos.flatMap((p) => {
+  const src = capturaDe(p);
+  return src ? [{ src, alt: p.data.titulo, captura: true }] : [];
+});
+---
+
+<Base lang={lang} titulo={t(lang, 'metaInicio')} descripcion={t(lang, 'metaInicioDesc')} alternas={alternas}>
+  <Hero lang={lang} alternas={alternas} />
+  <Proyectos lang={lang} proyectos={proyectos} />
+  <Carta lang={lang} />
+  <Trayectoria lang={lang} />
+  <Contacto lang={lang} />
+  <Fija slot="fija" imagenes={[...fotos, ...capturas]} activa={FOTOS.concepcion} />
+</Base>

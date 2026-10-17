@@ -1,0 +1,39 @@
+---
+import { FOTOS } from '../data/creditos';
+import { trayectoria } from '../data/trayectoria';
+import { lista, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<section id="trayectoria" class="seccion" data-imagen={FOTOS.peral} aria-labelledby="trayectoria-titulo">
+  <h2 id="trayectoria-titulo" class="solo-lector">{t(lang, 'trayectoriaTitulo')}</h2>
+  <div class="hoja" data-reveal>
+    <div class="hoja-cuerpo">
+      {
+        trayectoria[lang].map((grupo) => (
+          <div class="anio">
+            <h3>{grupo.anio}</h3>
+            <ul>
+              {grupo.items.map((item) => (
+                <li>
+                  <div class="tray-fila">
+                    <span>{item.titulo}</span>
+                    <span class="tray-mes">{item.mes}</span>
+                  </div>
+                  <p class="tray-detalle">{item.detalle}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+      <div class="hoja-stack">
+        {lista(lang, 'stack').map((linea) => <p>{linea}</p>)}
+      </div>
+    </div>
+  </div>
+</section>

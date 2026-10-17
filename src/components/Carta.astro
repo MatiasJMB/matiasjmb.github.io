@@ -1,0 +1,25 @@
+---
+import { FOTOS } from '../data/creditos';
+import { lista, t, type Lang } from '../i18n/ui';
+import { existePublico } from '../lib/publico';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const hayRetrato = existePublico('/retrato.jpg');
+---
+
+<section id="sobre-mi" class="seccion carta" data-imagen={FOTOS.artilleria} aria-labelledby="sobre-mi-titulo">
+  <h2 id="sobre-mi-titulo" class="solo-lector">{t(lang, 'sobreMi')}</h2>
+  <div class="medida">
+    {lista(lang, 'carta').map((parrafo) => <p data-reveal>{parrafo}</p>)}
+    <div class="firma" data-reveal>
+      {hayRetrato && <img class="firma-retrato" src="/retrato.jpg" alt="" width="44" height="44" />}
+      <div>
+        <p class="firma-nombre">{t(lang, 'marca')}</p>
+        <p class="firma-rol">{t(lang, 'rol')}</p>
+      </div>
+    </div>
+  </div>
+</section>

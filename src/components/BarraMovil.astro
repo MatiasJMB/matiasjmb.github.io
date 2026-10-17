@@ -1,0 +1,19 @@
+---
+import { rutaInicio, t, type Lang } from '../i18n/ui';
+import BotonTema from './BotonTema.astro';
+import SelectorIdioma from './SelectorIdioma.astro';
+
+interface Props {
+  lang: Lang;
+  alternas: Record<Lang, string>;
+}
+const { lang, alternas } = Astro.props;
+---
+
+<header class="barra">
+  <a class="marca" href={rutaInicio(lang)}>{t(lang, 'marca')}</a>
+  <div class="barra-ctl">
+    <SelectorIdioma lang={lang} alternas={alternas} />
+    <BotonTema lang={lang} />
+  </div>
+</header>

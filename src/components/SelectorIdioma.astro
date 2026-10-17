@@ -1,0 +1,14 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  alternas: Record<Lang, string>;
+}
+const { lang, alternas } = Astro.props;
+---
+
+<nav class="idiomas" aria-label={t(lang, 'idioma')}>
+  <a href={alternas.es} hreflang="es" lang="es" aria-current={lang === 'es' ? 'page' : undefined}>ES</a>
+  <a href={alternas.en} hreflang="en" lang="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+</nav>

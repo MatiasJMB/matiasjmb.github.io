@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.taste-skill/
+.env
+.DS_Store
+assets/*.jpg

@@ -1,0 +1,14 @@
+---
+import Ficha from '../../components/Ficha.astro';
+import { proyectosDe } from '../../lib/proyectos';
+import { slugDe } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const entradas = await proyectosDe('es');
+  return entradas.map((entry) => ({ params: { slug: slugDe(entry.id) }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Ficha lang="es" entry={entry} />

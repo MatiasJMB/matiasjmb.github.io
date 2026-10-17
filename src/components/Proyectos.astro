@@ -1,0 +1,85 @@
+---
+import { FOTOS } from '../data/creditos';
+import { rutaProyecto, slugDe, t, type Lang } from '../i18n/ui';
+import { capturaDe, type Proyecto } from '../lib/proyectos';
+
+interface Props {
+  lang: Lang;
+  proyectos: Proyecto[];
+}
+const { lang, proyectos } = Astro.props;
+
+const tecnologias = [
+  ['node', 'Node.js'],
+  ['react', 'React'],
+  ['mysql', 'MySQL'],
+  ['supabase', 'Supabase'],
+  ['aws', 'AWS'],
+  ['python', 'Python'],
+  ['flutter', 'Flutter'],
+] as const;
+
+const grupos = [
+  { tipo: 'cliente', titulo: t(lang, 'grupoCliente') },
+  { tipo: 'propio', titulo: t(lang, 'grupoPropio') },
+  { tipo: 'docencia', titulo: t(lang, 'grupoDocencia') },
+]
+  .map((g) => ({ ...g, items: proyectos.filter((p) => p.data.tipo === g.tipo) }))
+  .filter((g) => g.items.length > 0);
+
+const total = proyectos.length;
+const conteoTodos = t(lang, 'conteoTodos');
+const conteoParcial = t(lang, 'conteoParcial');
+---
+
+<section id="proyectos" class="seccion" data-imagen={FOTOS.concepcion} aria-labelledby="proyectos-titulo">
+  <h2 id="proyectos-titulo" class="tit" data-reveal>{t(lang, 'proyectosTitulo')}</h2>
+
+  <div class="filtro" role="group" aria-label={t(lang, 'filtroEtiqueta')} data-reveal>
+    <button type="button" data-filtro="todos" aria-pressed="true">{t(lang, 'filtroTodos')}</button>
+    {
+      tecnologias.map(([clave, nombre]) => (
+        <button type="button" data-filtro={clave} aria-pressed="false">{nombre}</button>
+      ))
+    }
+  </div>
+  <p
+    class="conteo"
+    aria-live="polite"
+    data-conteo
+    data-todos={conteoTodos}
+    data-parcial={conteoParcial}
+  >
+    {conteoTodos.replace('{total}', String(total))}
+  </p>
+
+  {
+    grupos.map((g) => (
+      <div class="grupo" data-reveal>
+        <h3>{g.titulo}</h3>
+        <ul>
+          {g.items.map((p) => {
+            const posicion = proyectos.indexOf(p);
+            const captura = capturaDe(p);
+            return (
+              <li class="item" data-item data-filtros={p.data.filtros.join(' ')}>
+                <a
+                  class="fila"
+                  href={rutaProyecto(lang, slugDe(p.id))}
+                  data-imagen={captura ?? FOTOS.concepcion}
+                >
+                  {captura && posicion < 3 && (
+                    <img class="fila-captura" src={captura} alt="" loading="lazy" decoding="async" />
+                  )}
+                  <span class="fila-nombre">{p.data.titulo}</span>
+                  <span class="fila-tipo">{p.data.resumen}</span>
+                  <span class="fila-anio">{p.data.anio}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
+</section>

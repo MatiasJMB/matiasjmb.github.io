@@ -1,0 +1,72 @@
+---
+import '@fontsource/besley/800.css';
+import '@fontsource/libre-franklin/400.css';
+import '@fontsource/libre-franklin/400-italic.css';
+import '@fontsource/libre-franklin/600.css';
+import '../styles/global.css';
+import BarraMovil from '../components/BarraMovil.astro';
+import Pie from '../components/Pie.astro';
+import { rutaInicio, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  titulo: string;
+  descripcion: string;
+  /** Ruta de la misma página en cada idioma. */
+  alternas?: Record<Lang, string>;
+}
+const { lang, titulo, descripcion } = Astro.props;
+const alternas = Astro.props.alternas ?? { es: rutaInicio('es'), en: rutaInicio('en') };
+const site = Astro.site ?? new URL('https://matiasjmb.github.io');
+const url = (ruta: string) => new URL(ruta, site).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={url(alternas[lang])} />
+    <link rel="alternate" hreflang="es" href={url(alternas.es)} />
+    <link rel="alternate" hreflang="en" href={url(alternas.en)} />
+    <link rel="alternate" hreflang="x-default" href={url(alternas.es)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={url(alternas[lang])} />
+    <meta property="og:image" content={url('/og.jpg')} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_CL' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      (function () {
+        var raiz = document.documentElement;
+        raiz.classList.add('js');
+        var tema = null;
+        try {
+          tema = localStorage.getItem('tema');
+        } catch (e) {}
+        if (tema !== 'dark' && tema !== 'light') {
+          tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        raiz.setAttribute('data-theme', tema);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">{t(lang, 'saltar')}</a>
+    <BarraMovil lang={lang} alternas={alternas} />
+    <div class="split">
+      <main id="contenido" class="lectura">
+        <slot />
+      </main>
+      <slot name="fija" />
+    </div>
+    <Pie lang={lang} alternas={alternas} />
+    <script>
+      import '../scripts/interacciones';
+    </script>
+  </body>
+</html>

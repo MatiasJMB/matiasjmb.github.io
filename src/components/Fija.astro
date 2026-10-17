@@ -1,0 +1,24 @@
+---
+import type { ImagenFija } from '../lib/tipos';
+
+interface Props {
+  imagenes: ImagenFija[];
+  activa: string;
+}
+const { imagenes, activa } = Astro.props;
+---
+
+<aside class="fija" aria-hidden="true">
+  {
+    imagenes.map((img) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        data-clave={img.src}
+        class:list={[{ activa: img.src === activa, captura: img.captura }]}
+        loading={img.src === activa ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    ))
+  }
+</aside>
