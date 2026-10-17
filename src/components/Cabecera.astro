@@ -2,6 +2,7 @@
 import { CV } from '../data/contacto';
 import { rutaInicio, t, type Lang } from '../i18n/ui';
 import BotonTema from './BotonTema.astro';
+import Logo from './Logo.astro';
 import SelectorIdioma from './SelectorIdioma.astro';
 
 interface Props {
@@ -19,7 +20,7 @@ const anclas = [
 
 <header class="cabecera">
   <div class="contenedor cabecera-fila">
-    <a class="cabecera-marca" href={inicio}>{t(lang, 'marca')}</a>
+    <a class="cabecera-marca" href={inicio}><Logo /><span translate="no">{t(lang, 'marca')}</span></a>
     <div class="cabecera-lado">
       <nav class="cabecera-anclas" aria-label={t(lang, 'menuEtiqueta')}>
         {anclas.map((a) => <a href={a.href}>{a.texto}</a>)}

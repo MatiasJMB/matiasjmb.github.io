@@ -1,10 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 13 272 272">
   <style>
-    .f{fill:#fafaf9}
-    .m{fill:none;stroke:#18181b;stroke-width:2.6;stroke-linejoin:miter}
-    @media (prefers-color-scheme:dark){.f{fill:#0c0c0d}.m{stroke:#ededed}}
+    .t{fill:#18181b}
+    @media (prefers-color-scheme:dark){.t{fill:#ededed}}
   </style>
-  <rect class="f" width="32" height="32"/>
-  <path class="m" d="M3.8 23V9l5.2 8 5.2-8v14"/>
-  <path class="m" d="M17.8 23V9l5.2 8 5.2-8v14"/>
+  <path class="t" d="M103 78 148 142.2 134.5 161.6 97.5 108.5 44 149 102 193 102 220 20 161 20 139Z"/>
+  <path fill="#FC7E1A" d="M193 78 276 139 276 161 194 220 194 193 252 149 198.5 108.5 148 181 134.5 161.5Z"/>
 </svg>

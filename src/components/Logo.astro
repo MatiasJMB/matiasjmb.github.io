@@ -1,0 +1,13 @@
+---
+// Monograma «M» del perfil de GitHub, vectorizado. El chevrón izquierdo toma la tinta del tema
+// (negro en claro, claro en oscuro) y el derecho conserva el naranja de la marca en ambos.
+interface Props {
+  class?: string;
+}
+const { class: clase } = Astro.props;
+---
+
+<svg class:list={['logo', clase]} viewBox="16 74 264 150" aria-hidden="true" focusable="false">
+  <path class="logo-tinta" d="M103 78 148 142.2 134.5 161.6 97.5 108.5 44 149 102 193 102 220 20 161 20 139Z" />
+  <path class="logo-marca" d="M193 78 276 139 276 161 194 220 194 193 252 149 198.5 108.5 148 181 134.5 161.5Z" />
+</svg>

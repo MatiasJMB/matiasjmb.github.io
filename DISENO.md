@@ -30,13 +30,26 @@ Dirección de la skill taste: «quiet instrument» (seed 980560963), con paleta 
   ```
 - Interlineado: 1.6 en el texto y 1.1 en los títulos. Texto corrido en `--ink`, nunca en gris.
 
+## Marca
+- Logo: monograma «M» del avatar de GitHub, vectorizado en `src/components/Logo.astro`.
+  - El chevrón izquierdo usa `--ink`, así que es negro en claro y claro en oscuro.
+  - El derecho usa `--marca` `#fc7e1a`, fijo en ambos temas.
+  - Fondo transparente.
+- Dónde aparece:
+  - en la cabecera, a 24 px y junto al nombre, como enlace al inicio;
+  - en el pie, a 16 px, junto al ©;
+  - como favicon: `public/favicon.svg`, que cambia la tinta con `prefers-color-scheme`, más `favicon-48.png` y `apple-touch-icon.png` opaco.
+  - No se repite en el hero.
+
 ## Color
 ```css
-:root{ --bg:#fafaf9; --surface:#f0f0ee; --ink:#18181b; --muted:#5c5c63; --accent:#1e40af; --accent-ink:#ffffff; }
-[data-theme="dark"]{ --bg:#0c0c0d; --surface:#18181b; --ink:#ededed; --muted:#a1a1aa; --accent:#9db6ff; --accent-ink:#0c0c0d; }
+:root{ --bg:#fafafa; --surface:#f0f0ee; --ink:#18181b; --muted:#5c5c63; --marca:#fc7e1a; --marca-fuerte:#d9650b; --sobre-marca:#18181b; }
+[data-theme="dark"]{ --bg:#0c0c0d; --surface:#18181b; --ink:#ededed; --muted:#a1a1aa; --marca-fuerte:#fc7e1a; }
 ```
+- **Botón primario:** fondo `--ink` y texto `--bg`, como el chevrón negro. Al pasar el mouse cambia a fondo `--marca` con texto `--sobre-marca` (6,9:1).
+- **Naranjo (nunca como color de texto sobre claro, porque da 2,5:1):** el logo, el subrayado de 3 px del filtro activo, los subrayados de hover (2 px), `::selection` y el anillo de foco (`--marca-fuerte`, 3,5:1 en claro).
 - Sin tema guardado, se sigue `prefers-color-scheme` (mismo mecanismo de la v1: atributo `data-theme` en `<html>`, script inline en `<head>` y botón de texto «Oscuro»/«Claro» con try/catch).
-- `--accent` va solo en el botón primario, en el foco visible y en el filtro activo. Los enlaces van en `--ink`, subrayados (`text-underline-offset: 3px`, grosor 1px como `text-decoration`; eso no es una línea decorativa).
+- Los enlaces van en `--ink`, subrayados en `--muted` (1 px), y al pasar el mouse el subrayado se vuelve `--marca` (2 px).
 
 ## Forma
 - **Radio:** 6 px en botones y capturas; 10 px en el marco de la captura (el «mat»).

@@ -1,6 +1,7 @@
 ---
 import { CV, GITHUB, LINKEDIN } from '../data/contacto';
 import { t, type Lang } from '../i18n/ui';
+import Logo from './Logo.astro';
 
 interface Props {
   lang: Lang;
@@ -10,7 +11,7 @@ const { lang } = Astro.props;
 
 <footer class="pie">
   <div class="contenedor pie-fila">
-    <p>{t(lang, 'legal')}</p>
+    <p class="pie-marca"><Logo /><span translate="no">{t(lang, 'legal')}</span></p>
     <nav aria-label={t(lang, 'pieEtiqueta')}>
       <a href={GITHUB} rel="noopener">GitHub</a>
       <a href={LINKEDIN} rel="noopener">LinkedIn</a>
