@@ -53,7 +53,7 @@ Dirección de la skill taste: «quiet instrument» (seed 980560963), con paleta 
 
 ## Forma
 - **Radio:** 6 px en botones y capturas; 10 px en el marco de la captura (el «mat»).
-- **Un solo botón primario:** fondo `--accent`, texto `--accent-ink`, 44 px de alto y padding 0 18px. El secundario es un enlace de texto con «↗» cuando sale del sitio.
+- **Un solo botón primario:** fondo `--ink`, texto `--bg`, 44 px de alto y padding 0 18px; hover con fondo `--marca`. El secundario es un enlace de texto (sin flechas: ↗ se dibujaba como emoji).
 - **Prohibido:**
   - bordes de 1 px o líneas separadoras, `<hr>` incluido;
   - sombras;
@@ -94,7 +94,7 @@ Dirección de la skill taste: «quiet instrument» (seed 980560963), con paleta 
 2. **Proyectos (`Proyectos.astro`, `id="proyectos"`).**
    - h2 «Proyectos» / «Projects».
    - **Filtro.** Debajo, la fila del filtro: botones de texto «Todos», «Node.js», «React», «MySQL», «Supabase», «AWS» y «Python». Solo aparecen los filtros que usa al menos un proyecto (campo `filtros`).
-     - El activo lleva `--accent` y `aria-pressed="true"`.
+     - El activo va en `--ink` 600 con subrayado `--marca` de 3 px y `aria-pressed="true"`.
      - La fila se renderiza con `hidden` y JS se lo quita: sin JS se ven todos los proyectos y no hay filtro.
      - Al filtrar, las tarjetas que no coinciden reciben `hidden`. Un `<p class="solo" aria-live="polite">` anuncia «N proyectos».
    - **Grilla.** `grid-template-columns: repeat(2, 1fr)`, `gap: 56px 32px`; una columna en ≤720 px.
@@ -103,7 +103,7 @@ Dirección de la skill taste: «quiet instrument» (seed 980560963), con paleta 
      - Fila: título (`--step-lead`, 600) a la izquierda y año a la derecha (`--step-small`, `--muted`, tabular).
      - `resumen` en `--step-body`, `--ink`, 2 líneas como máximo (`line-clamp: 2`).
      - Una línea `--step-small` `--muted`: tipo («Cliente» / «Propio») · los primeros 4 elementos de `stack`, unidos con « · ».
-     - Hover/focus-visible: la imagen escala 1 → 1.02 (300 ms) y el título se subraya. Foco visible con outline de 2 px en `--accent` sobre el `<a>`.
+     - Hover/focus-visible: la imagen escala 1 → 1.02 (300 ms) y el título se subraya. Foco visible con outline de 2 px en `--marca-fuerte` sobre el `<a>`.
    - **Orden.** El de `orden`.
 3. **Experiencia (`Experiencia.astro`, reemplaza a `Trayectoria.astro`, `id="experiencia"`).**
    - h2 «Experiencia» / «Experience».
