@@ -22,7 +22,7 @@ export const trayectoria = {
       items: [
         {
           titulo: 'Ingeniería Civil en Informática · Universidad de Playa Ancha',
-          detalle: 'Egresado; título en trámite.',
+          detalle: 'Egresado.',
           fecha: '2025',
         },
         {
@@ -56,7 +56,7 @@ export const trayectoria = {
       items: [
         {
           titulo: 'Computer Engineering · Universidad de Playa Ancha',
-          detalle: 'Graduated; degree in process.',
+          detalle: 'Graduated.',
           fecha: '2025',
         },
         {
