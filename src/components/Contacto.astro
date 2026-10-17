@@ -8,10 +8,10 @@ interface Props {
 const { lang } = Astro.props;
 const correo = `mailto:${CORREO}?subject=${encodeURIComponent(t(lang, 'contactoAsunto'))}`;
 const filas = [
-  { etiqueta: t(lang, 'contactoCorreo'), href: `mailto:${CORREO}`, texto: CORREO, externo: false },
-  { etiqueta: t(lang, 'contactoTelefono'), href: TELEFONO_HREF, texto: TELEFONO, externo: false },
-  { etiqueta: t(lang, 'contactoLinkedin'), href: LINKEDIN, texto: LINKEDIN_TEXTO, externo: true },
-  { etiqueta: t(lang, 'contactoGithub'), href: GITHUB, texto: GITHUB_TEXTO, externo: true },
+  { etiqueta: t(lang, 'contactoCorreo'), href: `mailto:${CORREO}`, texto: CORREO, externo: false, copiar: true },
+  { etiqueta: t(lang, 'contactoTelefono'), href: TELEFONO_HREF, texto: TELEFONO, externo: false, copiar: false },
+  { etiqueta: t(lang, 'contactoLinkedin'), href: LINKEDIN, texto: LINKEDIN_TEXTO, externo: true, copiar: false },
+  { etiqueta: t(lang, 'contactoGithub'), href: GITHUB, texto: GITHUB_TEXTO, externo: true, copiar: false },
 ];
 ---
 
@@ -26,9 +26,25 @@ const filas = [
       filas.map((f) => (
         <div class="dato" data-entra>
           <dt>{f.etiqueta}</dt>
-          <dd><a class="enlace" href={f.href} rel={f.externo ? 'noopener' : undefined}>{f.texto}</a></dd>
+          <dd>
+            <a class="enlace" href={f.href} rel={f.externo ? 'noopener' : undefined}>{f.texto}</a>
+            {f.copiar && (
+              <button
+                type="button"
+                class="copiar"
+                hidden
+                data-copiar={f.texto}
+                data-hecho={t(lang, 'copiado')}
+                data-error={t(lang, 'copiarError')}
+                aria-label={t(lang, 'copiarEtiqueta')}
+              >
+                {t(lang, 'copiar')}
+              </button>
+            )}
+          </dd>
         </div>
       ))
     }
   </dl>
+  <p class="solo" aria-live="polite" data-aviso-copia></p>
 </section>

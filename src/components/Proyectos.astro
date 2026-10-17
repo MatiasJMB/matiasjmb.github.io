@@ -29,6 +29,7 @@ const filtros = tecnologias.filter(([clave]) => usadas.has(clave));
   <div class="filtro" role="group" aria-label={t(lang, 'filtroEtiqueta')} hidden data-filtro-fila data-entra>
     <button type="button" data-filtro="todos" aria-pressed="true">{t(lang, 'filtroTodos')}</button>
     {filtros.map(([clave, nombre]) => <button type="button" data-filtro={clave} aria-pressed="false">{nombre}</button>)}
+    <span class="filtro-indicador" aria-hidden="true"></span>
   </div>
   <p
     class="solo"

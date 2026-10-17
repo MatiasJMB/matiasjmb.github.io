@@ -9,12 +9,12 @@ const es = {
   metaInicioDesc:
     'Matías Moreno, desarrollador full stack en Valparaíso, Chile. Sistemas web a medida con Node.js, React y MySQL.',
 
-  heroLead: 'Desarrollador Full Stack en Valparaíso, Chile.',
+  heroLead: 'Desarrollador full stack en Valparaíso, Chile.',
   heroTexto:
-    'Construyo sistemas web a medida para empresas: APIs en Node.js y Express, interfaces en React con TypeScript y bases de datos MySQL o PostgreSQL, del modelado de datos al despliegue en producción.',
-  heroDisponible: 'Disponible para trabajo remoto o presencial en la V Región.',
+    'Construyo sistemas web a medida para empresas, desde el levantamiento de requerimientos hasta el despliegue en producción.',
+  heroDisponible: 'Disponible para trabajo remoto o presencial.',
   verProyectos: 'Ver proyectos',
-  enlaceCv: 'CV (PDF)',
+  enlaceCv: 'Ver CV (PDF)',
   enlaceGithub: 'GitHub',
   enlaceLinkedin: 'LinkedIn',
 
@@ -28,12 +28,12 @@ const es = {
   tipoDocencia: 'Docencia',
 
   experienciaTitulo: 'Experiencia',
-  stackPrefijo: 'Stack',
+  stackPrefijo: 'Tecnologías',
 
   sobreMiTitulo: 'Sobre mí',
   sobreMi: [
-    'Soy ingeniero civil en informática, egresado de la Universidad de Playa Ancha en 2025. Desde entonces desarrollo sistemas web para empresas y clientes particulares: los levanto con el cliente, los construyo de punta a punta y los dejo funcionando en su hosting.',
-    'Me interesa el software que resuelve un problema concreto del día a día de un negocio: certificados, órdenes de trabajo, mantenciones, notas. Trabajo con Node.js, React y SQL, y también he construido arquitecturas serverless en AWS.',
+    'Soy ingeniero civil en informática, egresado de la Universidad de Playa Ancha en 2025. Trabajo como desarrollador full stack independiente: levanto los requerimientos con cada cliente, construyo el sistema completo y lo dejo funcionando en su servidor.',
+    'Me interesa el software que resuelve problemas concretos de un negocio, como certificados, órdenes de trabajo, mantenciones o calificaciones. Trabajo principalmente con Node.js, React y SQL, y también he diseñado una arquitectura serverless en AWS.',
   ],
 
   contactoTitulo: 'Contacto',
@@ -44,6 +44,10 @@ const es = {
   contactoTelefono: 'Teléfono',
   contactoLinkedin: 'LinkedIn',
   contactoGithub: 'GitHub',
+  copiar: 'Copiar',
+  copiarEtiqueta: 'Copiar correo',
+  copiado: 'Copiado',
+  copiarError: 'No se pudo copiar',
 
   menuProyectos: 'Proyectos',
   menuExperiencia: 'Experiencia',
@@ -52,8 +56,7 @@ const es = {
   menuEtiqueta: 'Secciones',
   pieEtiqueta: 'Enlaces',
   idioma: 'Idioma',
-  temaOscuro: 'Oscuro',
-  temaClaro: 'Claro',
+  temaEtiqueta: 'Modo oscuro',
   legal: '© 2026 Matías Moreno',
 
   volver: '← Proyectos',
@@ -61,10 +64,10 @@ const es = {
   defCliente: 'Cliente',
   defRol: 'Rol',
   defPeriodo: 'Período',
-  defStack: 'Stack',
+  defStack: 'Tecnologías',
   verCodigo: 'Ver código',
-  verDemo: 'Ver demo',
-  privado: 'Código privado por confidencialidad.',
+  verSitio: 'Visitar {sitio}',
+  privado: 'El código es privado por confidencialidad con el cliente.',
   siguiente: 'Siguiente proyecto:',
   altCaptura: 'Pantalla de inicio de {titulo}',
 
@@ -85,10 +88,10 @@ const en: Ui = {
 
   heroLead: 'Full stack developer based in Valparaíso, Chile.',
   heroTexto:
-    'I build custom web systems for businesses: Node.js and Express APIs, React and TypeScript interfaces, MySQL or PostgreSQL databases, from data modelling to production deployment.',
-  heroDisponible: 'Available for remote work or on-site in Valparaíso.',
+    'I build custom web systems for businesses, from requirements gathering to production deployment.',
+  heroDisponible: 'Available for remote or on-site work.',
   verProyectos: 'View projects',
-  enlaceCv: 'CV (PDF)',
+  enlaceCv: 'View CV (PDF)',
   enlaceGithub: 'GitHub',
   enlaceLinkedin: 'LinkedIn',
 
@@ -106,8 +109,8 @@ const en: Ui = {
 
   sobreMiTitulo: 'About',
   sobreMi: [
-    "I'm a civil engineer in computer science, a 2025 graduate of Universidad de Playa Ancha. Since then I've built web systems for companies and individual clients: I scope them with the client, build them end to end and leave them running on their hosting.",
-    'I like software that solves a concrete, everyday problem for a business: certificates, work orders, maintenance, grades. I work with Node.js, React and SQL, and I have also built serverless architectures on AWS.',
+    'I studied Computer Engineering at Universidad de Playa Ancha and graduated in 2025. I work as an independent full stack developer: I gather requirements with each client, build the complete system and leave it running on their server.',
+    "I'm drawn to software that solves concrete business problems, such as certificates, work orders, maintenance or grades. I work mainly with Node.js, React and SQL, and I have also designed a serverless architecture on AWS.",
   ],
 
   contactoTitulo: 'Contact',
@@ -118,6 +121,10 @@ const en: Ui = {
   contactoTelefono: 'Phone',
   contactoLinkedin: 'LinkedIn',
   contactoGithub: 'GitHub',
+  copiar: 'Copy',
+  copiarEtiqueta: 'Copy email',
+  copiado: 'Copied',
+  copiarError: "Couldn't copy",
 
   menuProyectos: 'Projects',
   menuExperiencia: 'Experience',
@@ -126,8 +133,7 @@ const en: Ui = {
   menuEtiqueta: 'Sections',
   pieEtiqueta: 'Links',
   idioma: 'Language',
-  temaOscuro: 'Dark',
-  temaClaro: 'Light',
+  temaEtiqueta: 'Dark mode',
   legal: '© 2026 Matías Moreno',
 
   volver: '← Projects',
@@ -137,8 +143,8 @@ const en: Ui = {
   defPeriodo: 'Period',
   defStack: 'Stack',
   verCodigo: 'View code',
-  verDemo: 'View demo',
-  privado: 'Private code due to confidentiality.',
+  verSitio: 'Visit {sitio}',
+  privado: 'The code is private to protect client confidentiality.',
   siguiente: 'Next project:',
   altCaptura: 'Home screen of {titulo}',
 

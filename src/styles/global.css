@@ -8,6 +8,8 @@
   --marca: #fc7e1a;
   --marca-fuerte: #d9650b;
   --sobre-marca: #18181b;
+  --pista: #d4d4d8;
+  --pulgar: #ffffff;
 
   --step-small: 0.875rem;
   --step-body: 1.0625rem;
@@ -28,6 +30,8 @@
   --ink: #ededed;
   --muted: #a1a1aa;
   --marca-fuerte: #fc7e1a;
+  --pista: #3f3f46;
+  --pulgar: #ededed;
 
   color-scheme: dark;
 }
@@ -40,9 +44,24 @@
     --ink: #ededed;
     --muted: #a1a1aa;
     --marca-fuerte: #fc7e1a;
+    --pista: #3f3f46;
+    --pulgar: #ededed;
 
     color-scheme: dark;
   }
+}
+
+/* Cambio de tema: los colores cruzan en vez de saltar (la clase dura ~300 ms). */
+html.tema-cambiando,
+html.tema-cambiando *,
+html.tema-cambiando *::before,
+html.tema-cambiando *::after {
+  transition:
+    background-color 250ms ease-out,
+    color 250ms ease-out,
+    fill 250ms ease-out,
+    stroke 250ms ease-out,
+    text-decoration-color 250ms ease-out;
 }
 
 /* Base */
@@ -169,7 +188,7 @@ h3 {
   position: absolute;
   left: 16px;
   top: 12px;
-  z-index: 10;
+  z-index: 30;
   padding: 10px 16px;
   border-radius: var(--radio);
   background: var(--ink);
@@ -204,7 +223,7 @@ h3 {
 
 .seccion {
   padding-top: var(--espacio-seccion);
-  scroll-margin-top: 24px;
+  scroll-margin-top: 88px; /* la cabecera fija no tapa el título */
 }
 
 .lead {
@@ -242,7 +261,8 @@ h3 {
   white-space: nowrap;
   transition:
     background-color 160ms ease-out,
-    color 160ms ease-out;
+    color 160ms ease-out,
+    transform 100ms ease-out;
 }
 
 .boton:hover {
@@ -250,7 +270,64 @@ h3 {
   color: var(--sobre-marca);
 }
 
-/* Cabecera */
+.boton:active {
+  transform: scale(0.97);
+}
+
+/* Cabecera: fija; arriba es transparente y, cuando hay contenido debajo, se vuelve material translúcido. */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  transition:
+    background-color 250ms ease-out,
+    backdrop-filter 250ms ease-out,
+    -webkit-backdrop-filter 250ms ease-out;
+}
+
+/* Borde de scroll: el contenido se desvanece bajo la barra en vez de chocar con una línea. */
+.cabecera::after {
+  content: '';
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 16px;
+  background: linear-gradient(color-mix(in srgb, var(--bg) 86%, transparent), transparent);
+  opacity: 0;
+  transition: opacity 250ms ease-out;
+  pointer-events: none;
+}
+
+.cabecera.flotando {
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+.cabecera.flotando::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .cabecera.flotando {
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .cabecera.flotando {
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: inset 0 -1px 0 var(--ink);
+  }
+
+  .cabecera::after {
+    display: none;
+  }
+}
+
 .cabecera-fila {
   display: flex;
   align-items: center;
@@ -261,10 +338,11 @@ h3 {
 
 .cabecera-marca {
   display: inline-flex;
+  flex: none;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  min-width: 44px; /* el logo solo también es un objetivo de 44 px */
   min-height: 44px;
-  font-weight: 600;
   text-decoration: none;
 }
 
@@ -313,21 +391,33 @@ h3 {
   height: 16px;
 }
 
-.cabecera-lado {
+/* Navegación junto al logo; idioma y tema, que son ajustes, a la derecha. */
+.cabecera-izq {
   display: flex;
   align-items: center;
-  gap: 4px 20px;
-  font-size: var(--step-small);
+  gap: 28px;
 }
 
-.cabecera-anclas {
+.cabecera-nav {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.cabecera-lado a,
-.tema {
+.cabecera-lado {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cabecera-nav,
+.cabecera-lado {
+  font-size: var(--step-small);
+}
+
+.cabecera-nav a,
+.cabecera-lado a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -335,9 +425,24 @@ h3 {
   text-decoration: none;
 }
 
+.cabecera-nav a:hover,
 .cabecera-lado a:hover,
-.tema:hover {
+.cabecera-nav a[aria-current='true'] {
   color: var(--ink);
+}
+
+/* Sección actual: el mismo subrayado naranjo del filtro activo (un color, un significado). */
+.nav-indicador {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 2px;
+  background: var(--marca);
+  transform-origin: 0 0;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
 }
 
 .idiomas {
@@ -351,27 +456,106 @@ h3 {
   font-weight: 600;
 }
 
-.tema .para-claro {
-  display: none;
+/* Interruptor de tema. --p va de 0 (claro) a 1 (oscuro): sin JS lo fija el CSS, con JS lo mueve un resorte. */
+@property --estira {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
 }
 
-[data-theme='dark'] .tema .para-oscuro {
-  display: none;
+.tema {
+  --p: 0;
+  position: relative;
+  flex: none;
+  width: 52px;
+  height: 30px;
+  border-radius: 15px;
+  background: var(--pista);
+  touch-action: none;
+  transition: --estira 120ms ease-out;
 }
 
-[data-theme='dark'] .tema .para-claro {
-  display: inline;
+[data-theme='dark'] .tema {
+  --p: 1;
 }
 
-@media (max-width: 720px) {
-  .cabecera-anclas {
-    display: none;
+/* Área táctil de 44 px de alto sin agrandar el dibujo. */
+.tema::before {
+  content: '';
+  position: absolute;
+  inset: -7px -4px;
+}
+
+.tema.presionado {
+  --estira: 5px; /* el pulgar se estira al presionar, como en iOS */
+}
+
+.tema-pulgar {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: grid;
+  place-items: center;
+  width: calc(26px + var(--estira));
+  height: 26px;
+  border-radius: 13px;
+  background: var(--pulgar);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); /* única sombra del sitio: separa el pulgar de la pista */
+  transform: translateX(calc(var(--p) * (22px - var(--estira))));
+  will-change: transform;
+}
+
+.tema-sol,
+.tema-luna {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+}
+
+.tema-sol {
+  fill: var(--marca-fuerte);
+  stroke: var(--marca-fuerte);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: calc(1 - var(--p));
+  transform: rotate(calc(var(--p) * 90deg)) scale(calc(1 - var(--p) * 0.5));
+}
+
+.tema-sol path {
+  fill: none;
+}
+
+.tema-luna {
+  fill: #18181b;
+  opacity: var(--p);
+  transform: rotate(calc((1 - var(--p)) * -60deg)) scale(calc(0.5 + var(--p) * 0.5));
+}
+
+@media (prefers-contrast: more) {
+  .tema {
+    box-shadow: inset 0 0 0 1px var(--ink);
   }
 }
 
-@media (max-width: 380px) {
+/* Sin espacio para las anclas quedan logo, CV, idioma y tema. */
+@media (max-width: 620px) {
+  .cabecera-nav .cabecera-ancla,
+  .nav-indicador {
+    display: none;
+  }
+
+  .cabecera-izq {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cabecera-fila {
+    gap: 12px;
+  }
+
   .cabecera-lado {
-    gap: 4px 14px;
+    gap: 14px;
   }
 }
 
@@ -421,10 +605,17 @@ html.js [data-entra].entra {
     transform: none;
     transition: none;
   }
+
+  .boton:active,
+  .filtro button:active,
+  .tarjeta a:active .mat {
+    transform: none;
+  }
 }
 
 /* Proyectos */
 .filtro {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 0 8px;
@@ -435,6 +626,11 @@ html.js [data-entra].entra {
   min-height: 44px;
   padding: 0 12px;
   color: var(--muted);
+  transition: transform 100ms ease-out;
+}
+
+.filtro button:active {
+  transform: scale(0.96);
 }
 
 .filtro button:hover {
@@ -444,10 +640,19 @@ html.js [data-entra].entra {
 .filtro button[aria-pressed='true'] {
   color: var(--ink);
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--marca);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 8px;
+}
+
+/* Un solo subrayado de 1 px de ancho que JS traslada y escala hasta el filtro activo. */
+.filtro-indicador {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 3px;
+  background: var(--marca);
+  transform-origin: 0 0;
+  will-change: transform;
+  pointer-events: none;
 }
 
 .grilla {
@@ -474,6 +679,14 @@ html.js [data-entra].entra {
   border-radius: var(--radio-mat);
   background: var(--surface);
   overflow: hidden;
+}
+
+.tarjeta .mat {
+  transition: transform 100ms ease-out;
+}
+
+.tarjeta a:active .mat {
+  transform: scale(0.985);
 }
 
 .mat img {
@@ -650,9 +863,63 @@ html.js [data-entra].entra {
   color: var(--muted);
 }
 
+/* Valor y acción en dos columnas: todos los valores terminan en la misma línea, haya acción o no. */
 .dato dd {
+  display: grid;
+  grid-template-columns: auto 7ch;
+  align-items: baseline;
+  justify-content: end;
+  column-gap: 16px;
   text-align: right;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 599px) {
+  .dato {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dato dd {
+    grid-template-columns: auto auto;
+    justify-content: start;
+    text-align: left;
+  }
+}
+
+/* Copiar el correo: acción secundaria en texto, con confirmación en el mismo lugar (HIG, feedback.md). */
+.copiar {
+  position: relative;
+  flex: none;
+  min-width: 7ch; /* «Copiado» no desplaza la fila */
+  color: var(--muted);
+  font-size: var(--step-small);
+  text-align: right;
+  transition:
+    color 160ms ease-out,
+    transform 100ms ease-out;
+}
+
+/* Objetivo táctil de 44 px sin cambiar la altura de la fila. */
+.copiar::before {
+  content: '';
+  position: absolute;
+  inset: -12px -8px;
+}
+
+.copiar:hover,
+.copiar.hecho {
+  color: var(--ink);
+}
+
+.copiar:active {
+  transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copiar:active {
+    transform: none;
+  }
 }
 
 /* Pie */

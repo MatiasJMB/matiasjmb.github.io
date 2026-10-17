@@ -12,20 +12,23 @@ interface Props {
 const { lang, alternas } = Astro.props;
 const inicio = rutaInicio(lang);
 const anclas = [
-  { href: `${inicio}#proyectos`, texto: t(lang, 'menuProyectos') },
-  { href: `${inicio}#experiencia`, texto: t(lang, 'menuExperiencia') },
-  { href: `${inicio}#contacto`, texto: t(lang, 'menuContacto') },
+  { href: `${inicio}#proyectos`, seccion: 'proyectos', texto: t(lang, 'menuProyectos') },
+  { href: `${inicio}#experiencia`, seccion: 'experiencia', texto: t(lang, 'menuExperiencia') },
+  { href: `${inicio}#contacto`, seccion: 'contacto', texto: t(lang, 'menuContacto') },
 ];
 ---
 
 <header class="cabecera">
   <div class="contenedor cabecera-fila">
-    <a class="cabecera-marca" href={inicio}><Logo /><span translate="no">{t(lang, 'marca')}</span></a>
-    <div class="cabecera-lado">
-      <nav class="cabecera-anclas" aria-label={t(lang, 'menuEtiqueta')}>
-        {anclas.map((a) => <a href={a.href}>{a.texto}</a>)}
+    <div class="cabecera-izq">
+      <a class="cabecera-marca" href={inicio}><Logo /><span class="solo" translate="no">{t(lang, 'marca')}</span></a>
+      <nav class="cabecera-nav" aria-label={t(lang, 'menuEtiqueta')}>
+        {anclas.map((a) => <a class="cabecera-ancla" href={a.href} data-seccion={a.seccion}>{a.texto}</a>)}
+        <a href={CV} target="_blank" rel="noopener">{t(lang, 'menuCv')}</a>
+        <span class="nav-indicador" aria-hidden="true"></span>
       </nav>
-      <a class="cabecera-cv" href={CV} target="_blank" rel="noopener">{t(lang, 'menuCv')}</a>
+    </div>
+    <div class="cabecera-lado">
       <SelectorIdioma lang={lang} alternas={alternas} />
       <BotonTema lang={lang} />
     </div>

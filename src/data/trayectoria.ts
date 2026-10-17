@@ -4,7 +4,7 @@ export const trayectoria = {
       grupo: 'Trabajo',
       items: [
         {
-          titulo: 'Desarrollador Full Stack freelance',
+          titulo: 'Desarrollador full stack freelance',
           detalle:
             'Sistemas web a medida para CEGAS y clientes de servicio técnico, mantención de maquinaria y educación: del levantamiento de requerimientos al despliegue en producción.',
           fecha: '2025 – presente',

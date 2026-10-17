@@ -59,7 +59,7 @@ const tituloLargo = d.titulo.length > 34;
       (d.repo || d.demo || d.privado) && (
         <div class="ficha-acciones" data-entra>
           {d.repo && <a class="boton" href={d.repo} rel="noopener">{t(lang, 'verCodigo')}</a>}
-          {d.demo && <a class="enlace" href={d.demo} rel="noopener">{t(lang, 'verDemo')}</a>}
+          {d.demo && <a class="enlace" href={d.demo} rel="noopener">{t(lang, 'verSitio').replace('{sitio}', new URL(d.demo).hostname)}</a>}
           {d.privado && <p class="ficha-privado">{t(lang, 'privado')}</p>}
         </div>
       )
