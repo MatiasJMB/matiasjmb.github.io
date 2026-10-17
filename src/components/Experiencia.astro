@@ -1,0 +1,32 @@
+---
+import { stack, trayectoria } from '../data/trayectoria';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<section id="experiencia" class="seccion contenedor" aria-labelledby="experiencia-titulo">
+  <h2 id="experiencia-titulo" data-entra>{t(lang, 'experienciaTitulo')}</h2>
+
+  {
+    trayectoria[lang].map((g) => (
+      <div class="exp-grupo">
+        <h3 data-entra>{g.grupo}</h3>
+        <ul>
+          {g.items.map((item) => (
+            <li class="exp-fila" data-entra>
+              <p class="exp-titulo">{item.titulo}</p>
+              <p class="exp-fecha">{item.fecha}</p>
+              <p class="exp-detalle medida">{item.detalle}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+
+  <p class="exp-stack" data-entra>{t(lang, 'stackPrefijo')}: {stack[lang]}</p>
+</section>

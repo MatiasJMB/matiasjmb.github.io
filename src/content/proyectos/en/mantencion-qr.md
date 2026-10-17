@@ -8,11 +8,11 @@ periodo: "Oct 2026"
 anio: 2026
 stack: ["Node.js", "Express 5", "MySQL", "React", "Vite", "TypeScript", "Tailwind CSS"]
 filtros: [node, mysql, react]
-imagen: "/capturas/mantencion-qr.png"
+imagen: "/capturas/mantencion-qr.webp"
 repo: null
 demo: null
 privado: true
-orden: 5
+orden: 3
 ---
 
 ## Problem

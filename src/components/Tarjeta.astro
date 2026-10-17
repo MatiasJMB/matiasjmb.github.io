@@ -1,0 +1,46 @@
+---
+import { rutaProyecto, slugDe, t, type Lang } from '../i18n/ui';
+import { capturaDe, type Proyecto } from '../lib/proyectos';
+
+interface Props {
+  lang: Lang;
+  proyecto: Proyecto;
+  /** Las primeras tarjetas cargan la imagen sin esperar. */
+  prioridad?: boolean;
+}
+const { lang, proyecto, prioridad = false } = Astro.props;
+const d = proyecto.data;
+const captura = capturaDe(proyecto);
+const alt = t(lang, 'altCaptura').replace('{titulo}', d.titulo);
+const tipo = t(lang, d.tipo === 'cliente' ? 'tipoCliente' : d.tipo === 'propio' ? 'tipoPropio' : 'tipoDocencia');
+const meta = [tipo, ...d.stack.slice(0, 4)].join(' · ');
+---
+
+<article class="tarjeta" data-entra data-item data-filtros={d.filtros.join(' ')}>
+  <a href={rutaProyecto(lang, slugDe(proyecto.id))}>
+    <div class="mat">
+      {
+        captura ? (
+          <img
+            src={captura.src}
+            srcset={captura.srcset}
+            sizes="(max-width:720px) 100vw, 520px"
+            width="1920"
+            height="1200"
+            alt={alt}
+            loading={prioridad ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        ) : (
+          <div class="sin-captura">{d.titulo}</div>
+        )
+      }
+    </div>
+    <div class="tarjeta-fila">
+      <h3 class="tarjeta-titulo">{d.titulo}</h3>
+      <span class="tarjeta-anio">{d.anio}</span>
+    </div>
+    <p class="tarjeta-resumen">{d.resumen}</p>
+    <p class="tarjeta-meta">{meta}</p>
+  </a>
+</article>

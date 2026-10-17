@@ -9,8 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@fontsource/besley": "^5.2.0",
-    "@fontsource/libre-franklin": "^5.2.0",
+    "@fontsource-variable/geist": "^5.3.0",
     "astro": "^5.0.0"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@ periodo: "Oct 2026"
 anio: 2026
 stack: ["Node.js", "Express 5", "SQLite", "React", "Vite", "TypeScript", "Tailwind CSS"]
 filtros: [node, react]
-imagen: "/capturas/libro-de-notas.png"
+imagen: "/capturas/libro-de-notas.webp"
 repo: null
 demo: null
 privado: true

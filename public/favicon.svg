@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <style>
-    .f{fill:#e6dbc7}
-    .m{fill:none;stroke:#062b8a;stroke-width:2.6;stroke-linejoin:miter}
-    @media (prefers-color-scheme:dark){.f{fill:#0a1840}.m{stroke:#e6dbc7}}
+    .f{fill:#fafaf9}
+    .m{fill:none;stroke:#18181b;stroke-width:2.6;stroke-linejoin:miter}
+    @media (prefers-color-scheme:dark){.f{fill:#0c0c0d}.m{stroke:#ededed}}
   </style>
   <rect class="f" width="32" height="32"/>
   <path class="m" d="M3.8 23V9l5.2 8 5.2-8v14"/>

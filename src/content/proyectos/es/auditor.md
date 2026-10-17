@@ -8,11 +8,11 @@ periodo: "2026"
 anio: 2026
 stack: ["Python", "JSON", "HTML"]
 filtros: [python]
-imagen: null
+imagen: "/capturas/auditor.webp"
 repo: "https://github.com/MatiasJMB/auditor"
 demo: null
 privado: false
-orden: 10
+orden: 8
 ---
 
 ## Problema

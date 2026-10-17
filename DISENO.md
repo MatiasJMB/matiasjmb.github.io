@@ -1,161 +1,165 @@
-# Contrato del portafolio (matiasjmb.github.io)
+# Contrato del portafolio v2 (matiasjmb.github.io), minimalista
 
-## Idea
-En esta página, **Valparaíso (donde trabajo) y las pantallas reales de mis sistemas** son la mitad fija.
-A la izquierda va siempre una columna de lectura; a la derecha, una mitad fija, sticky y de alto completo, con
-una foto de Valparaíso que cambia (fundido de 1,6 s) por la captura del proyecto que se está leyendo.
-**Elemento vivo:** filtro por tecnología en la lista de proyectos (Node.js, React, MySQL, Supabase,
-AWS, Python, Flutter). Al elegir uno, las filas que no lo usan bajan a tinta suave. Funciona con el pulgar.
-Sin JS, se muestran todas.
+La v1 (split con fotos de Valparaíso, papel crema, franjas, hoja festoneada) se descarta entera.
+Dirección de la skill taste: «quiet instrument» (seed 980560963), con paleta y tipo propios fijados por el cliente:
+- sitio sobrio, con mucho aire y una sola familia tipográfica;
+- las únicas imágenes son **capturas reales** de cada sistema;
+- nada decorativo.
 
-## Stack técnico
-- Astro 5, sitio estático, `site: "https://matiasjmb.github.io"`, sin `base`.
-- i18n: `defaultLocale: "es"`, `locales: ["es","en"]`, `prefixDefaultLocale: false`.
-  - Rutas ES: `/` y `/proyectos/<slug>/`.
-  - Rutas EN: `/en/` y `/en/projects/<slug>/`.
-- Textos de interfaz en `src/i18n/ui.ts`: objeto `{ es: {...}, en: {...} }` más helper `t(lang, key)`.
-- Fuentes autoalojadas: `@fontsource/besley` (800) y `@fontsource/libre-franklin` (400, 600). Nada de Google Fonts.
-- Sin Tailwind ni frameworks UI. CSS propio en `src/styles/global.css` con tokens.
-- JS mínimo, en `<script>` de Astro: filtro, fundido de la mitad fija, tema y entradas al hacer scroll. Respeta `prefers-reduced-motion`.
+## Stack (no cambia)
+- Astro 5 estático, i18n `es` (sin prefijo) y `en` (`/en/`).
+- Rutas: `/`, `/proyectos/<slug>/`, `/en/`, `/en/projects/<slug>/`, `404`.
+- Colección `proyectos` (`src/content.config.ts`): el esquema no cambia.
+- Textos de interfaz en `src/i18n/ui.ts`, con `t(lang, key)`.
+- Sin Tailwind ni frameworks UI. CSS propio en `src/styles/global.css` (reescribirlo entero; la v1 no se recicla).
+- JS mínimo en `src/scripts/interacciones.ts`: filtro, tema y entradas.
 
-## Colección de contenido (la escribe otro agente; aquí solo se consume)
-`src/content.config.ts`, colección `proyectos` con loader glob sobre `src/content/proyectos/**/*.md`.
-El id incluye el idioma: `es/cegas`, `en/cegas`.
+## Tipografía
+- Una sola familia: **Geist Variable**, ya instalada.
+  - Importar `@fontsource-variable/geist` en `Base.astro`.
+  - `font-family: "Geist Variable", system-ui, sans-serif`.
+- Pesos: solo 400 y 600. Cifras tabulares (`font-variant-numeric: tabular-nums`) en años y fechas.
+- Tracking: 0 en el texto; −0.02em en los títulos de 28 px o más.
+- Cinco tamaños, ninguno más:
+  ```css
+  --step-small: 0.875rem;                                  /* 14px: meta, stack, pie */
+  --step-body: 1.0625rem;                                  /* 17px: texto */
+  --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem); /* títulos de tarjeta, lead */
+  --step-head: clamp(1.5rem, 1.25rem + 1vw, 2rem);           /* h2 de sección */
+  --step-display: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);     /* h1 hero y ficha */
+  ```
+- Interlineado: 1.6 en el texto y 1.1 en los títulos. Texto corrido en `--ink`, nunca en gris.
 
-Frontmatter:
-```
-titulo: string
-resumen: string            # una línea
-tipo: "cliente" | "propio" | "docencia"
-cliente: string            # "CEGAS", "Cliente confidencial", "Proyecto propio"
-rol: string
-periodo: string            # "ago 2026 – presente"
-anio: number               # 2026
-stack: string[]
-filtros: string[]          # subconjunto de: node, react, mysql, supabase, aws, python, flutter
-imagen: string | null      # "/capturas/<slug>.png" o null
-repo: string | null
-demo: string | null
-privado: boolean           # true => "Código privado por confidencialidad"
-orden: number              # menor = primero
-```
-Cuerpo con `## Problema`, `## Solución`, `## Resultado`, en inglés `## Problem`, `## Solution`, `## Outcome`.
-
-Slugs: cegas, plataforma-flota, mecanizame, libro-de-notas, mantencion-qr, docencia, ahora-pan, gympulse,
-plinko-live, auditor, atiende-ai, alke-wallet.
-
-## Tokens
+## Color
 ```css
-:root{ --bg:#e6dbc7; --surface:#ddd0b9; --ink:#062b8a; --muted:#3a5aa8; --accent:#062b8a; --accent-ink:#e6dbc7; }
-[data-theme="dark"]{ --bg:#0a1840; --surface:#102256; --ink:#e6dbc7; --muted:#a9b8dd; --accent:#e6dbc7; --accent-ink:#062b8a; }
+:root{ --bg:#fafaf9; --surface:#f0f0ee; --ink:#18181b; --muted:#5c5c63; --accent:#1e40af; --accent-ink:#ffffff; }
+[data-theme="dark"]{ --bg:#0c0c0d; --surface:#18181b; --ink:#ededed; --muted:#a1a1aa; --accent:#9db6ff; --accent-ink:#0c0c0d; }
 ```
-- Si no hay tema guardado, se sigue `prefers-color-scheme`.
-- El botón de tema es texto («Oscuro»/«Claro») y se guarda en `localStorage` dentro de try/catch.
-- Un solo radio en todo el sitio: **0** (esquinas rectas). Botón = bloque relleno de `--accent` con texto `--accent-ink`.
+- Sin tema guardado, se sigue `prefers-color-scheme` (mismo mecanismo de la v1: atributo `data-theme` en `<html>`, script inline en `<head>` y botón de texto «Oscuro»/«Claro» con try/catch).
+- `--accent` va solo en el botón primario, en el foco visible y en el filtro activo. Los enlaces van en `--ink`, subrayados (`text-underline-offset: 3px`, grosor 1px como `text-decoration`; eso no es una línea decorativa).
 
-Tipografía:
-- Display: Besley 800, tracking -0.02em, interlineado 0.95.
-- Texto: Libre Franklin 400/600, interlineado 1.5.
-- Pasos:
-```css
---step-small: clamp(0.8125rem,0.79rem + 0.1vw,0.875rem);
---step-body: clamp(1.125rem,1.05rem + 0.3vw,1.3125rem);
---step-lead: clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
---step-head: clamp(2rem,1.3rem + 3.2vw,4rem);
-```
-Máximo 5 tamaños. Texto corrido a 16 px o más y en tinta completa.
+## Forma
+- **Radio:** 6 px en botones y capturas; 10 px en el marco de la captura (el «mat»).
+- **Un solo botón primario:** fondo `--accent`, texto `--accent-ink`, 44 px de alto y padding 0 18px. El secundario es un enlace de texto con «↗» cuando sale del sitio.
+- **Prohibido:**
+  - bordes de 1 px o líneas separadoras, `<hr>` incluido;
+  - sombras;
+  - degradados;
+  - blur;
+  - monospace;
+  - etiquetas pequeñas sobre los títulos (eyebrows);
+  - numeración 01/02;
+  - emojis;
+  - mayúsculas espaciadas.
+- Las superficies se separan solo por tono (`--surface`) y por espacio.
+- Títulos en 2 líneas como máximo, en cualquier ancho.
 
-## Reglas de la casa (obligatorias)
-- Sin etiquetas pequeñas sobre los títulos.
-- Sin monospace fuera de código.
-- Sin numeración 01/02.
-- Sin líneas finas ni cajas con borde de 1 px.
-- Sin degradados.
-- Sin sombras en reposo.
-- Sin glass ni blur.
-- Sin emojis.
-- Sin tarjetas con ícono.
-- Sin mayúsculas pequeñas espaciadas.
-- Títulos en 2 líneas o menos en todo ancho.
-- Las superficies se separan por un salto de tono (`--surface`), nunca por líneas.
+## Contenedor
+- `.contenedor`: `max-width: 1080px; margin-inline: auto; padding-inline: 24px` (en ≤599 px, `padding-inline: 20px`).
+- Texto corrido con medida máxima de 62ch.
+- Espacio entre secciones: `clamp(80px, 6vw + 48px, 136px)`. Nada de bandas de color a ancho completo.
 
-## Composición
-**Escritorio:** grid de 2 columnas 50/50 con 12 px de gap y 12 px de margen exterior.
-- La columna de lectura va a la izquierda, con padding de 48–72 px y medida máxima de 46ch.
-- La derecha es `position: sticky; top: 12px; height: calc(100svh - 24px)`: imágenes apiladas a sangre que se funden con `opacity`. La imagen activa la elige un `IntersectionObserver` sobre cada sección o fila con `data-imagen`.
+## Cabecera (`Cabecera.astro`, reemplaza a `BarraMovil.astro`)
+- Fila de 72 px dentro de `.contenedor`. No es sticky.
+- **Izquierda:** «Matías Moreno» (600, `--step-body`), enlace al inicio del idioma.
+- **Derecha:** nav con «Proyectos», «Experiencia», «Contacto» (anclas `#proyectos`, `#experiencia`, `#contacto`; en una ficha apuntan a `/#…` o `/en/#…`) y «CV» (PDF `/cv/CV_Matias_Moreno_FullStack_2026.pdf`, abre en pestaña nueva). Después, `SelectorIdioma` (ES/EN) y `BotonTema`. Todo en `--step-small`, `--muted`, y en `--ink` al hacer hover.
+- **≤720 px:** la nav de anclas se oculta y quedan nombre, CV, idioma y tema.
+- Antes de la cabecera va un enlace «Saltar al contenido».
 
-**Teléfono:** la imagen va arriba, 48svh, a ancho completo dentro de 12 px de margen. La tarjeta del hero la monta por −24 px. Después todo es una sola columna.
+## Inicio (`Inicio.astro`, en este orden)
+1. **Hero (`Hero.astro`).**
+   - `padding-top: clamp(64px, 14svh, 160px)`.
+   - h1 «Matías Moreno» en `--step-display` y 600.
+   - `p.lead` en `--step-lead`: ES «Desarrollador Full Stack en Valparaíso, Chile.» / EN «Full stack developer based in Valparaíso, Chile.»
+   - `p` en `--step-body` y `--ink`, con 62ch máx.:
+     - ES: «Construyo sistemas web a medida para empresas: APIs en Node.js y Express, interfaces en React con TypeScript y bases de datos MySQL o PostgreSQL, del modelado de datos al despliegue en producción.»
+     - EN: «I build custom web systems for businesses: Node.js and Express APIs, React and TypeScript interfaces, MySQL or PostgreSQL databases, from data modelling to production deployment.»
+   - A 32 px, una fila con:
+     - el botón primario «Ver proyectos» → `#proyectos`;
+     - los enlaces de texto «CV (PDF)», «GitHub ↗» y «LinkedIn ↗», separados 24 px.
+   - Debajo, en `--step-small` y `--muted`: ES «Disponible para trabajo remoto o presencial en la V Región.» / EN «Available for remote work or on-site in Valparaíso.»
+2. **Proyectos (`Proyectos.astro`, `id="proyectos"`).**
+   - h2 «Proyectos» / «Projects».
+   - **Filtro.** Debajo, la fila del filtro: botones de texto «Todos», «Node.js», «React», «MySQL», «Supabase», «AWS» y «Python». Solo aparecen los filtros que usa al menos un proyecto (campo `filtros`).
+     - El activo lleva `--accent` y `aria-pressed="true"`.
+     - La fila se renderiza con `hidden` y JS se lo quita: sin JS se ven todos los proyectos y no hay filtro.
+     - Al filtrar, las tarjetas que no coinciden reciben `hidden`. Un `<p class="solo" aria-live="polite">` anuncia «N proyectos».
+   - **Grilla.** `grid-template-columns: repeat(2, 1fr)`, `gap: 56px 32px`; una columna en ≤720 px.
+   - **Tarjeta (`Tarjeta.astro`).** `<article>` con un `<a>` que la envuelve entera, hacia la ficha. Dentro:
+     - `.mat`: fondo `--surface`, radio 10 px, `padding: clamp(10px, 1.6vw, 18px)`, `overflow: hidden`. Adentro va la captura: `<img>` 16:10, `object-fit: cover`, `object-position: top`, radio 6 px, `width`/`height` explícitos, `loading="lazy"` (las dos primeras van en `eager`), con `srcset` según «Capturas» más abajo y `sizes="(max-width:720px) 100vw, 520px"`. Si no hay captura, `.mat` muestra el título del proyecto centrado en `--step-head` y `--muted`, con relación 16:10.
+     - Fila: título (`--step-lead`, 600) a la izquierda y año a la derecha (`--step-small`, `--muted`, tabular).
+     - `resumen` en `--step-body`, `--ink`, 2 líneas como máximo (`line-clamp: 2`).
+     - Una línea `--step-small` `--muted`: tipo («Cliente» / «Propio») · los primeros 4 elementos de `stack`, unidos con « · ».
+     - Hover/focus-visible: la imagen escala 1 → 1.02 (300 ms) y el título se subraya. Foco visible con outline de 2 px en `--accent` sobre el `<a>`.
+   - **Orden.** El de `orden`.
+3. **Experiencia (`Experiencia.astro`, reemplaza a `Trayectoria.astro`, `id="experiencia"`).**
+   - h2 «Experiencia» / «Experience».
+   - Grupos con un título h3 en `--step-body` 600: «Trabajo», «Formación» / «Work», «Education».
+   - Cada fila tiene dos extremos:
+     - a la izquierda, `titulo` (600) y debajo `detalle` (`--ink`, 62ch);
+     - a la derecha, `fecha` (`--step-small`, `--muted`, tabular, `white-space: nowrap`).
+   - Filas separadas por 24 px de espacio, sin líneas. En el teléfono, la fecha pasa debajo del título.
+   - Al final, un párrafo «Stack: …» en `--step-small` `--muted`.
+   - Los datos van en `src/data/trayectoria.ts` (los escribe otro agente con esta forma): `{ es: [{ grupo: string, items: [{ titulo, detalle, fecha }] }], en: [...] }` y `stack: { es: string, en: string }`.
+4. **Sobre mí (`SobreMi.astro`, reemplaza a `Carta.astro`, `id="sobre-mi"`).**
+   - h2 «Sobre mí» / «About».
+   - Párrafos de `ui.ts`, clave `sobreMi` (array; ver más abajo), en `--step-body` y 62ch.
+5. **Contacto (`Contacto.astro`, `id="contacto"`).**
+   - h2 «Contacto» / «Contact».
+   - Frase: ES «Estoy disponible para proyectos freelance y puestos de desarrollo full stack.» / EN «I'm available for freelance projects and full stack roles.»
+   - Botón primario «Escribir un correo» / «Send an email» → `mailto:matias.moreno101@gmail.com?subject=Contacto%20desde%20el%20portafolio`.
+   - Filas de dos extremos, etiqueta `--muted` a la izquierda y valor enlazado a la derecha:
+     - Correo: `matias.moreno101@gmail.com`;
+     - Teléfono: `+56 9 8142 9525` (`tel:+56981429525`);
+     - LinkedIn: `in/matias-joaquin-moreno-barrios`;
+     - GitHub: `MatiasJMB`.
+   - Los datos están en `src/data/contacto.ts` (reusar).
+6. **Pie (`Pie.astro`).**
+   - Una sola línea dentro de `.contenedor`, con `padding-block: 48px`.
+   - Contenido: «© 2026 Matías Moreno» a la izquierda; a la derecha, GitHub, LinkedIn y CV en `--step-small` `--muted`.
+   - Sin créditos de fotos ni menú grande.
 
-### Inicio (`/` y `/en/`), en este orden
-1. **Hero, «tarjeta con franjas».**
-   - Panel `--surface` con una banda superior de 56 px de barras alternas tinta/papel de 28 px (flex de bloques).
-   - Debajo: wordmark «Matías Moreno» en Besley.
-   - Titular en 2 líneas: ES «Sistemas a medida / desde Valparaíso» · EN «Custom software / from Valparaíso».
-   - Una frase. ES: «Desarrollador full stack: construyo sistemas web para empresas chilenas, de la base de datos al despliegue.» EN, la traducción.
-   - Botón «Ver proyectos» → `#proyectos`.
-   - Fila de 3 enlaces de texto: CV (PDF) · GitHub · LinkedIn.
-   - La misma franja reaparece como banda de 8 px sobre el footer.
-   - Imagen fija: `/valparaiso/ascensor-concepcion.jpg`.
-2. **Proyectos (`id="proyectos"`), «libro mayor».**
-   - Título «Proyectos» y, debajo, la fila del filtro: botones de texto, el activo en tinta y subrayado grueso de 3 px.
-   - Una fila por proyecto, agrupadas por `tipo`: «Para clientes», «Propios», «Docencia».
-   - Cada fila: nombre a la izquierda, tipo de trabajo (`resumen`, recortado a una línea) en tinta suave desde el 55 %, y año a la derecha con cifras tabulares.
-   - Sin líneas entre filas y 44 px de alto.
-   - Cada fila es un enlace a la ficha y lleva `data-imagen`, que cambia la mitad fija al pasar el mouse, hacer foco o entrar en vista.
-   - En teléfono, los 3 primeros muestran su captura 16:10 encima de la fila.
-3. **Sobre mí, «carta del fundador».**
-   - Sin título. 4 párrafos cortos en primera persona; el texto lo provee `ui.ts` (clave `carta`, array de párrafos).
-   - Firma «Matías Moreno» en itálica (Libre Franklin) y debajo el rol en tinta suave.
-   - Retrato redondo de 44 px **solo si existe** `/public/retrato.jpg`; si no existe, se omite.
-   - Imagen fija: `/valparaiso/cerro-artilleria.jpg`.
-4. **Trayectoria, «hoja de menú impresa».**
-   - Hoja `--surface` de 640 px con los bordes superior e inferior festoneados (`clip-path` o máscara SVG).
-   - Grupos por año («2025», «2026»): ítem a la izquierda y mes a la derecha con cifras tabulares, más una línea de detalle en tinta suave.
-   - Datos en `src/data/trayectoria.ts` (`{es:[{anio, items:[{titulo, detalle, mes}]}], en:[…]}`). Los escribes tú con esto:
-     - **2025:** egreso de Ingeniería Civil en Informática, UPLA (dic); práctica profesional (oct); primeros proyectos freelance (fines de 2025).
-     - **2026:** Ahora Pan (ene); GymPulse, Plinko Live y Mecanízame (jun); CEGAS: correos, anti-spam y sistema administrativo (ago); plataforma para flota de camiones (ago); clases de desarrollo móvil (2026); libro de notas y mantención con QR (oct).
-   - Al pie de la hoja, el stack en 2 líneas centradas.
-   - Imagen fija: `/valparaiso/ascensor-el-peral.jpg`.
-5. **Contacto, «un solo campo».**
-   - Pregunta en 2 líneas. ES «¿Tienes un sistema en mente? / Cuéntame en una línea.»
-   - Un input de 64 px de alto en el tono más claro, con botón cuadrado de flecha dentro (nombre accesible «Enviar»). Al enviar abre `mailto:matias.moreno101@gmail.com` con asunto «Contacto desde el portafolio» y el texto como cuerpo.
-   - Debajo, filas etiqueta/valor: correo, teléfono +56 9 8142 9525, Valparaíso, Chile.
-   - Imagen fija: `/valparaiso/puerto.jpg`.
-6. **Footer, «mitad foto, mitad menú».** Esta sección rompe el split y va a ancho completo.
-   - Mitad izquierda: foto `/valparaiso/puerto.jpg` recortada fuerte.
-   - Mitad derecha: menú grande (Proyectos, Sobre mí, Trayectoria, Contacto, CV) a ~2.6vw en bold; al hover, desplazamiento de 12 px.
-   - Bloques de contacto y redes.
-   - Selector de idioma ES/EN y botón de tema.
-   - **Créditos de fotos**, uno por imagen (los da `src/data/creditos.ts`, que también escribes tú con el contenido de `/home/silver/portafolio/assets/credits.json`).
-   - Línea legal «© 2026 Matías Moreno».
+## Ficha (`Ficha.astro`, para ambas páginas `[slug]`)
+- Cabecera igual.
+- `.contenedor`:
+  - «← Proyectos» / «← Projects» (hacia `/#proyectos` o `/en/#proyectos`);
+  - h1 con el `titulo` en `--step-display` (2 líneas como máximo; si no cabe, en `--step-head`);
+  - `p.lead` con el `resumen`.
+- Meta como `<dl>` en una grilla de 4 columnas (2 en el teléfono): Cliente, Rol, Período, Stack (la lista completa, unida con « · »). `dt` en `--step-small` `--muted`, `dd` en `--step-body`.
+- Acciones: botón «Ver código» si hay `repo`, enlace «Ver demo ↗» si hay `demo`. Si `privado`, la línea «Código privado por confidencialidad.» en `--muted`.
+- Captura: `.mat` igual a la tarjeta, a todo el ancho del contenedor, `loading="eager"` y `sizes="(max-width:1080px) 100vw, 1032px"`.
+- Cuerpo Markdown (`<Content />`) en una columna de 62ch, con estilos de prosa: h2 en `--step-lead` 600 con margen superior de 48 px, párrafos y listas en `--step-body`.
+- Al final, «Siguiente proyecto: <título> →» según `orden` (con vuelta al primero).
+- `getStaticPaths` filtra por idioma (como ahora).
 
-Arriba hay una barra mínima solo en móvil: wordmark, ES/EN y tema. En escritorio, idioma y tema van al pie de la columna de lectura del hero.
+## Capturas
+- Archivos en `public/capturas/`: `<slug>.webp` (1920 px de ancho) y `<slug>-960.webp` (960 px), los dos en 16:10. Los pongo yo.
+- En el frontmatter, `imagen: "/capturas/<slug>.webp"`.
+- `srcset` = `"<slug>-960.webp 960w, <slug>.webp 1920w"`, armado reemplazando `.webp` por `-960.webp`. `width="1920" height="1200"`.
+- `src/lib/proyectos.ts`: `capturaDe(p)` devuelve `{ src, srcset }` o null según `existePublico` (reusar `src/lib/publico.ts`).
+- Borrar `imagenFicha` y la dependencia de `creditos.ts`.
+- `alt`: ES «Pantalla de inicio de <título>» / EN «Home screen of <title>».
 
-### Ficha de proyecto (`/proyectos/[slug]/`, `/en/projects/[slug]/`)
-Mismo split, con la mitad fija mostrando `imagen` (o una foto de Valparaíso si es null).
-- Columna: enlace «← Proyectos», título (step-head, 2 líneas máximo), `resumen` como lead, y una lista de definiciones (cliente, rol, período, stack).
-- Botones «Ver código» / «Ver demo» si hay `repo`/`demo`. Si `privado`, la línea «Código privado por confidencialidad».
-- El cuerpo en Markdown, con estilos de prosa propios.
-- Al final: «Siguiente proyecto →» según `orden`.
-- `getStaticPaths` filtra por idioma.
+## Movimiento (`interacciones.ts`)
+- Entrada por sección: JS agrega `.js` a `<html>`. Los hijos marcados `[data-entra]` (h2, filtro, cada tarjeta, filas) parten con `opacity:0` y `translateY(16px)`, y entran una sola vez con IntersectionObserver, escalonados 70 ms, 500 ms ease-out.
+- Si falla el JS, todo queda visible: las reglas ocultas solo aplican bajo `html.js`.
+- Hover en botones (oscurecer 8 % con `filter: brightness`), enlaces (subrayado) y tarjetas (escala de imagen).
+- `prefers-reduced-motion`: sin desplazamiento ni escala, solo opacidad instantánea.
 
-### Movimiento
-- Fundido de la mitad fija (1,6 s).
-- Entrada escalonada por sección (título, texto, imagen; 60–90 ms; 16–32 px más opacidad; una sola vez).
-- Feedback de hover/focus/active en todos los controles.
-- Zoom lento (1 → 1.04 en 20 s) en la imagen fija activa.
-- Con `prefers-reduced-motion`, todo sin desplazamiento.
-- El contenido nunca queda oculto si falla el JS: las clases de animación se agregan desde JS.
+## i18n (`ui.ts`)
+- Reescribir las claves según lo que usen los componentes nuevos y borrar las que queden sin uso (carta, franja, créditos, pregunta de contacto, etc.).
+- `sobreMi` ES (2 párrafos):
+  1. «Soy ingeniero civil en informática, egresado de la Universidad de Playa Ancha en 2025. Desde entonces desarrollo sistemas web para empresas y clientes particulares: los levanto con el cliente, los construyo de punta a punta y los dejo funcionando en su hosting.»
+  2. «Me interesa el software que resuelve un problema concreto del día a día de un negocio: certificados, órdenes de trabajo, mantenciones, notas. Trabajo con Node.js, React y SQL, y también he construido arquitecturas serverless en AWS.»
+- EN, la traducción natural.
+- `meta.description` ES «Matías Moreno, desarrollador full stack en Valparaíso, Chile. Sistemas web a medida con Node.js, React y MySQL.» y EN equivalente.
 
-### SEO y accesibilidad
-- `<html lang>` correcto, `hreflang` alterno ES/EN y `<title>`/description por página.
-- Open Graph con `/og.jpg` (lo pondré yo), favicon simple `/favicon.svg` (monograma «MM» en `--ink` sobre `--bg`; lo dibujas tú).
-- Foco visible, alt en cada imagen y enlace «Saltar al contenido».
+## SEO y accesibilidad (se mantiene)
+- `lang` y `hreflang` alternos.
+- `title` y `description` por página.
+- OG `/og.jpg` (lo regenero yo) y `favicon.svg`: actualizar sus colores a `--ink` sobre `--bg` nuevos.
+- Foco visible, `alt` y skip link.
+- Contraste AA.
 
-### Despliegue
-`.github/workflows/deploy.yml` con `withastro/action@v3` + `actions/deploy-pages@v4`, en push a `main` y con permisos de pages/id-token.
-
-### Activos (ya existen o los pondré yo)
-- `public/valparaiso/`: ascensor-concepcion.jpg, cerro-artilleria.jpg, ascensor-el-peral.jpg, puerto.jpg.
-- `public/capturas/<slug>.png`: si no existe el archivo, se usa la foto de la sección.
-- `public/cv/CV_Matias_Moreno_FullStack_2026.pdf`.
+## Despliegue
+`.github/workflows/deploy.yml` no cambia.

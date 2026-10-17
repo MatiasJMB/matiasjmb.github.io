@@ -1,128 +1,75 @@
-import type { Lang } from '../i18n/ui';
-
-export interface ItemTrayectoria {
-  titulo: string;
-  detalle: string;
-  mes: string;
-}
-export interface GrupoTrayectoria {
-  anio: string;
-  items: ItemTrayectoria[];
-}
-
-export const trayectoria: Record<Lang, GrupoTrayectoria[]> = {
+export const trayectoria = {
   es: [
     {
-      anio: '2025',
+      grupo: 'Trabajo',
       items: [
         {
-          titulo: 'Práctica profesional',
-          detalle: 'Ingeniería Civil en Informática, UPLA.',
-          mes: 'oct',
+          titulo: 'Desarrollador Full Stack freelance',
+          detalle:
+            'Sistemas web a medida para CEGAS y clientes de servicio técnico, mantención de maquinaria y educación: del levantamiento de requerimientos al despliegue en producción.',
+          fecha: '2025 – presente',
         },
         {
-          titulo: 'Egreso de Ingeniería Civil en Informática',
-          detalle: 'Universidad de Playa Ancha, Valparaíso. Título en trámite.',
-          mes: 'dic',
-        },
-        {
-          titulo: 'Primeros proyectos freelance',
-          detalle: 'Desarrollo full stack por encargo.',
-          mes: 'fines',
+          titulo: 'Docencia y tutorías',
+          detalle:
+            'Clases online de desarrollo de apps móviles con Flutter y tutorías universitarias de Android y Estructura de Datos en C.',
+          fecha: '2026',
         },
       ],
     },
     {
-      anio: '2026',
+      grupo: 'Formación',
       items: [
         {
-          titulo: 'Ahora Pan',
-          detalle: 'SaaS para panaderías: pedidos por WhatsApp y panel web en tiempo real.',
-          mes: '2026',
+          titulo: 'Ingeniería Civil en Informática · Universidad de Playa Ancha',
+          detalle: 'Egresado; título en trámite.',
+          fecha: '2025',
         },
         {
-          titulo: 'GymPulse, Plinko Live y Mecanízame',
-          detalle: 'Retención para gimnasios en AWS, overlay para TikTok Live y CRM para talleres.',
-          mes: 'jun',
-        },
-        {
-          titulo: 'CEGAS: correos, anti-spam y sistema administrativo',
-          detalle: 'Correos corporativos, formularios protegidos y un sistema web con Node.js y MySQL.',
-          mes: 'ago',
-        },
-        {
-          titulo: 'Plataforma para flota de camiones',
-          detalle: 'Migración de datos históricos y reconstrucción con Node.js, MySQL y React.',
-          mes: 'ago',
-        },
-        {
-          titulo: 'Clases de desarrollo móvil',
-          detalle: 'De App Inventor a Dart y Flutter, con material propio.',
-          mes: 'durante 2026',
-        },
-        {
-          titulo: 'Libro de notas y mantención con QR',
-          detalle: 'Una app de calificaciones para un docente y una plataforma de mantención con códigos QR.',
-          mes: 'oct',
+          titulo: 'Certificación Avanzada en Python · Universidad Técnica Federico Santa María',
+          detalle: 'POO, decoradores, generadores, gestión de memoria y Clean Code.',
+          fecha: '2023',
         },
       ],
     },
   ],
   en: [
     {
-      anio: '2025',
+      grupo: 'Work',
       items: [
         {
-          titulo: 'Professional internship',
-          detalle: 'Civil Engineering in Computer Science, UPLA.',
-          mes: 'Oct',
+          titulo: 'Freelance full stack developer',
+          detalle:
+            'Custom web systems for CEGAS and clients in technical service, machinery maintenance and education: from requirements gathering to production deployment.',
+          fecha: '2025 – present',
         },
         {
-          titulo: 'Finished Civil Engineering in Computer Science',
-          detalle: 'Universidad de Playa Ancha, Valparaíso. Degree pending.',
-          mes: 'Dec',
-        },
-        {
-          titulo: 'First freelance projects',
-          detalle: 'Commissioned full stack development.',
-          mes: 'late',
+          titulo: 'Teaching and tutoring',
+          detalle:
+            'Online classes in mobile app development with Flutter, and university tutoring in Android and Data Structures in C.',
+          fecha: '2026',
         },
       ],
     },
     {
-      anio: '2026',
+      grupo: 'Education',
       items: [
         {
-          titulo: 'Ahora Pan',
-          detalle: 'SaaS for bakeries: WhatsApp orders and a real-time web panel.',
-          mes: '2026',
+          titulo: 'Computer Engineering · Universidad de Playa Ancha',
+          detalle: 'Graduated; degree in process.',
+          fecha: '2025',
         },
         {
-          titulo: 'GymPulse, Plinko Live and Mecanízame',
-          detalle: 'Gym retention on AWS, a TikTok Live overlay and a CRM for repair shops.',
-          mes: 'Jun',
-        },
-        {
-          titulo: 'CEGAS: email, anti-spam and admin system',
-          detalle: 'Corporate email, protected forms and a web system with Node.js and MySQL.',
-          mes: 'Aug',
-        },
-        {
-          titulo: 'Truck fleet platform',
-          detalle: 'Historical data migration and a rebuild with Node.js, MySQL and React.',
-          mes: 'Aug',
-        },
-        {
-          titulo: 'Mobile development classes',
-          detalle: 'From App Inventor to Dart and Flutter, with my own material.',
-          mes: 'during 2026',
-        },
-        {
-          titulo: 'Grade book and QR maintenance',
-          detalle: 'A grading app for a teacher and a machinery maintenance platform with QR codes.',
-          mes: 'Oct',
+          titulo: 'Advanced Python Certification · Universidad Técnica Federico Santa María',
+          detalle: 'OOP, decorators, generators, memory management and Clean Code.',
+          fecha: '2023',
         },
       ],
     },
   ],
+};
+
+export const stack = {
+  es: 'JavaScript, TypeScript, Python y SQL · Node.js y Express · React, Vite y Tailwind CSS · MySQL, PostgreSQL y Supabase · AWS, Docker, Linux y cPanel.',
+  en: 'JavaScript, TypeScript, Python and SQL · Node.js and Express · React, Vite and Tailwind CSS · MySQL, PostgreSQL and Supabase · AWS, Docker, Linux and cPanel.',
 };

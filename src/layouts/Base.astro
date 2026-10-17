@@ -1,10 +1,7 @@
 ---
-import '@fontsource/besley/800.css';
-import '@fontsource/libre-franklin/400.css';
-import '@fontsource/libre-franklin/400-italic.css';
-import '@fontsource/libre-franklin/600.css';
+import '@fontsource-variable/geist';
 import '../styles/global.css';
-import BarraMovil from '../components/BarraMovil.astro';
+import Cabecera from '../components/Cabecera.astro';
 import Pie from '../components/Pie.astro';
 import { rutaInicio, t, type Lang } from '../i18n/ui';
 
@@ -57,14 +54,11 @@ const url = (ruta: string) => new URL(ruta, site).href;
   </head>
   <body>
     <a class="saltar" href="#contenido">{t(lang, 'saltar')}</a>
-    <BarraMovil lang={lang} alternas={alternas} />
-    <div class="split">
-      <main id="contenido" class="lectura">
-        <slot />
-      </main>
-      <slot name="fija" />
-    </div>
-    <Pie lang={lang} alternas={alternas} />
+    <Cabecera lang={lang} alternas={alternas} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Pie lang={lang} />
     <script>
       import '../scripts/interacciones';
     </script>

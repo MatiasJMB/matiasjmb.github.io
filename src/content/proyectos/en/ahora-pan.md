@@ -8,11 +8,11 @@ periodo: "2026"
 anio: 2026
 stack: ["Node.js", "Express", "TypeScript", "React", "Vite", "Tailwind CSS", "Supabase", "Baileys"]
 filtros: [node, react, supabase]
-imagen: "/capturas/ahora-pan.png"
+imagen: "/capturas/ahora-pan.webp"
 repo: "https://github.com/MatiasJMB/ahora-pan"
 demo: null
 privado: false
-orden: 7
+orden: 6
 ---
 
 ## Problem

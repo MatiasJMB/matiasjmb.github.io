@@ -8,7 +8,7 @@ periodo: "ago 2026 – presente"
 anio: 2026
 stack: ["Node.js", "Express 5", "MySQL", "React", "TypeScript", "Python", "pandas"]
 filtros: [node, mysql, react, python]
-imagen: "/capturas/plataforma-flota.png"
+imagen: "/capturas/plataforma-flota.webp"
 repo: null
 demo: null
 privado: true

@@ -1,10 +1,8 @@
 ---
 import { render } from 'astro:content';
-import { altFoto } from '../data/creditos';
 import Base from '../layouts/Base.astro';
 import { rutaInicio, rutaProyecto, slugDe, t, type Lang } from '../i18n/ui';
-import { capturaDe, imagenFicha, proyectosDe, type Proyecto } from '../lib/proyectos';
-import Fija from './Fija.astro';
+import { capturaDe, proyectosDe, type Proyecto } from '../lib/proyectos';
 
 interface Props {
   lang: Lang;
@@ -27,49 +25,76 @@ const alternas = {
 };
 
 const { Content } = await render(entry);
-const imagen = imagenFicha(entry, posicion);
-const esCaptura = capturaDe(entry) !== null;
-const alt = esCaptura ? d.titulo : altFoto(imagen, lang);
+const captura = capturaDe(entry);
+const alt = t(lang, 'altCaptura').replace('{titulo}', d.titulo);
+// Un título largo baja a --step-head para no pasar de dos líneas.
+const tituloLargo = d.titulo.length > 34;
 ---
 
 <Base lang={lang} titulo={`${d.titulo} · ${t(lang, 'marca')}`} descripcion={d.resumen} alternas={alternas}>
-  <article class="seccion ficha">
-    <a class="enlace ficha-volver" href={`${rutaInicio(lang)}#proyectos`}>{t(lang, 'volver')}</a>
-    <h1 class="tit" data-reveal>{d.titulo}</h1>
-    <p class="lead" data-reveal>{d.resumen}</p>
+  <article class="ficha contenedor">
+    <h1 class:list={['ficha-titulo', { largo: tituloLargo }]} data-entra>{d.titulo}</h1>
+    <p class="lead medida" data-entra>{d.resumen}</p>
 
-    <dl class="def" data-reveal>
-      <dt>{t(lang, 'defCliente')}</dt>
-      <dd>{d.cliente}</dd>
-      <dt>{t(lang, 'defRol')}</dt>
-      <dd>{d.rol}</dd>
-      <dt>{t(lang, 'defPeriodo')}</dt>
-      <dd>{d.periodo}</dd>
-      <dt>{t(lang, 'defStack')}</dt>
-      <dd>{d.stack.join(', ')}</dd>
+    <dl class="def" data-entra>
+      <div>
+        <dt>{t(lang, 'defCliente')}</dt>
+        <dd>{d.cliente}</dd>
+      </div>
+      <div>
+        <dt>{t(lang, 'defRol')}</dt>
+        <dd>{d.rol}</dd>
+      </div>
+      <div>
+        <dt>{t(lang, 'defPeriodo')}</dt>
+        <dd>{d.periodo}</dd>
+      </div>
+      <div>
+        <dt>{t(lang, 'defStack')}</dt>
+        <dd>{d.stack.join(' · ')}</dd>
+      </div>
     </dl>
 
     {
-      (d.repo || d.demo) && (
-        <div class="ficha-botones">
+      (d.repo || d.demo || d.privado) && (
+        <div class="ficha-acciones" data-entra>
           {d.repo && <a class="boton" href={d.repo} rel="noopener">{t(lang, 'verCodigo')}</a>}
-          {d.demo && <a class="boton" href={d.demo} rel="noopener">{t(lang, 'verDemo')}</a>}
+          {d.demo && <a class="enlace" href={d.demo} rel="noopener">{t(lang, 'verDemo')}</a>}
+          {d.privado && <p class="ficha-privado">{t(lang, 'privado')}</p>}
         </div>
       )
     }
-    {d.privado && <p class="ficha-privado">{t(lang, 'privado')}</p>}
+
+    {
+      captura && (
+        <div class="mat ficha-mat" data-entra>
+          <img
+            src={captura.src}
+            srcset={captura.srcset}
+            sizes="(max-width:1080px) 100vw, 1032px"
+            width="1920"
+            height="1200"
+            alt={alt}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
 
     <div class="prosa">
       <Content />
     </div>
 
-    {
-      siguiente && (
-        <a class="siguiente" href={rutaProyecto(lang, slugDe(siguiente.id))}>
-          {t(lang, 'siguiente')}
-        </a>
-      )
-    }
+    <nav class="ficha-pie" aria-label={t(lang, 'navProyectos')} data-entra>
+      <a class="ficha-volver" href={`${rutaInicio(lang)}#proyectos`}>{t(lang, 'volver')}</a>
+      {
+        siguiente && (
+          <a class="siguiente" href={rutaProyecto(lang, slugDe(siguiente.id))}>
+            <span>{t(lang, 'siguiente')}</span> <strong>{siguiente.data.titulo}</strong> →
+          </a>
+        )
+      }
+    </nav>
   </article>
-  <Fija slot="fija" imagenes={[{ src: imagen, alt, captura: esCaptura }]} activa={imagen} />
 </Base>

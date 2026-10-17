@@ -8,11 +8,11 @@ periodo: "jun 2026 – presente"
 anio: 2026
 stack: ["React 19", "TypeScript", "Vite", "React Router 7", "Tailwind CSS 4", "Supabase", "PostgreSQL"]
 filtros: [react, supabase]
-imagen: "/capturas/mecanizame.png"
+imagen: "/capturas/mecanizame.webp"
 repo: "https://github.com/MatiasJMB/mecanizame"
 demo: null
 privado: false
-orden: 3
+orden: 5
 ---
 
 ## Problema

@@ -8,11 +8,11 @@ periodo: "jun 2026"
 anio: 2026
 stack: ["AWS Lambda", "API Gateway", "DynamoDB", "SQS", "EventBridge Scheduler", "Cognito", "AWS SAM", "Node.js"]
 filtros: [aws, node]
-imagen: "/capturas/gympulse.png"
+imagen: "/capturas/gympulse.webp"
 repo: "https://github.com/MatiasJMB/gympulse"
 demo: null
 privado: false
-orden: 8
+orden: 7
 ---
 
 ## Problema

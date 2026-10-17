@@ -1,70 +1,20 @@
 ---
-import { CORREO, CV, GITHUB, LINKEDIN, TELEFONO, TELEFONO_HREF } from '../data/contacto';
-import { FOTOS, altFoto, creditos } from '../data/creditos';
-import { rutaInicio, t, type Lang } from '../i18n/ui';
-import BotonTema from './BotonTema.astro';
-import Franja from './Franja.astro';
-import SelectorIdioma from './SelectorIdioma.astro';
+import { CV, GITHUB, LINKEDIN } from '../data/contacto';
+import { t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
-  alternas: Record<Lang, string>;
 }
-const { lang, alternas } = Astro.props;
-const inicio = rutaInicio(lang);
-const menu = [
-  { href: `${inicio}#proyectos`, texto: t(lang, 'menuProyectos') },
-  { href: `${inicio}#sobre-mi`, texto: t(lang, 'menuSobreMi') },
-  { href: `${inicio}#trayectoria`, texto: t(lang, 'menuTrayectoria') },
-  { href: `${inicio}#contacto`, texto: t(lang, 'menuContacto') },
-  { href: CV, texto: t(lang, 'menuCv') },
-];
+const { lang } = Astro.props;
 ---
 
 <footer class="pie">
-  <Franja />
-  <div class="pie-cuerpo">
-    <div class="pie-foto">
-      <img src={FOTOS.puerto} alt={altFoto(FOTOS.puerto, lang)} loading="lazy" decoding="async" />
-    </div>
-    <div class="pie-lado">
-      <nav class="pie-menu" aria-label={t(lang, 'pieMenu')}>
-        <ul>
-          {menu.map((m) => <li><a href={m.href}>{m.texto}</a></li>)}
-        </ul>
-      </nav>
-
-      <div class="pie-bloques">
-        <ul>
-          <li><a class="enlace" href={`mailto:${CORREO}`}>{CORREO}</a></li>
-          <li><a class="enlace" href={TELEFONO_HREF}>{TELEFONO}</a></li>
-        </ul>
-        <ul aria-label={t(lang, 'pieRedes')}>
-          <li><a class="enlace" href={GITHUB} rel="noopener">{t(lang, 'enlaceGithub')}</a></li>
-          <li><a class="enlace" href={LINKEDIN} rel="noopener">{t(lang, 'enlaceLinkedin')}</a></li>
-        </ul>
-      </div>
-
-      <div class="pie-ctl">
-        <SelectorIdioma lang={lang} alternas={alternas} />
-        <BotonTema lang={lang} />
-      </div>
-
-      <section class="creditos" aria-labelledby="creditos-titulo">
-        <h2 id="creditos-titulo">{t(lang, 'creditosTitulo')}</h2>
-        <ul>
-          {
-            creditos.map((c) => (
-              <li>
-                <a class="enlace" href={c.url} rel="noopener">{c.titulo}</a>, {c.autor},{' '}
-                <a class="enlace" href={c.licenciaUrl} rel="noopener">{c.licencia}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
-      <p class="legal">{t(lang, 'legal')}</p>
-    </div>
+  <div class="contenedor pie-fila">
+    <p>{t(lang, 'legal')}</p>
+    <nav aria-label={t(lang, 'pieEtiqueta')}>
+      <a href={GITHUB} rel="noopener">GitHub</a>
+      <a href={LINKEDIN} rel="noopener">LinkedIn</a>
+      <a href={CV} target="_blank" rel="noopener">CV</a>
+    </nav>
   </div>
 </footer>

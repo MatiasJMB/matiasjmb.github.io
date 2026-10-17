@@ -1,7 +1,7 @@
 ---
-import { FOTOS } from '../data/creditos';
-import { rutaProyecto, slugDe, t, type Lang } from '../i18n/ui';
-import { capturaDe, type Proyecto } from '../lib/proyectos';
+import { t, type Lang } from '../i18n/ui';
+import type { Proyecto } from '../lib/proyectos';
+import Tarjeta from './Tarjeta.astro';
 
 interface Props {
   lang: Lang;
@@ -16,70 +16,29 @@ const tecnologias = [
   ['supabase', 'Supabase'],
   ['aws', 'AWS'],
   ['python', 'Python'],
-  ['flutter', 'Flutter'],
 ] as const;
 
-const grupos = [
-  { tipo: 'cliente', titulo: t(lang, 'grupoCliente') },
-  { tipo: 'propio', titulo: t(lang, 'grupoPropio') },
-  { tipo: 'docencia', titulo: t(lang, 'grupoDocencia') },
-]
-  .map((g) => ({ ...g, items: proyectos.filter((p) => p.data.tipo === g.tipo) }))
-  .filter((g) => g.items.length > 0);
-
-const total = proyectos.length;
-const conteoTodos = t(lang, 'conteoTodos');
-const conteoParcial = t(lang, 'conteoParcial');
+// Solo aparecen los filtros que usa al menos un proyecto.
+const usadas = new Set(proyectos.flatMap((p) => p.data.filtros));
+const filtros = tecnologias.filter(([clave]) => usadas.has(clave));
 ---
 
-<section id="proyectos" class="seccion" data-imagen={FOTOS.concepcion} aria-labelledby="proyectos-titulo">
-  <h2 id="proyectos-titulo" class="tit" data-reveal>{t(lang, 'proyectosTitulo')}</h2>
+<section id="proyectos" class="seccion contenedor" aria-labelledby="proyectos-titulo">
+  <h2 id="proyectos-titulo" data-entra>{t(lang, 'proyectosTitulo')}</h2>
 
-  <div class="filtro" role="group" aria-label={t(lang, 'filtroEtiqueta')} data-reveal>
+  <div class="filtro" role="group" aria-label={t(lang, 'filtroEtiqueta')} hidden data-filtro-fila data-entra>
     <button type="button" data-filtro="todos" aria-pressed="true">{t(lang, 'filtroTodos')}</button>
-    {
-      tecnologias.map(([clave, nombre]) => (
-        <button type="button" data-filtro={clave} aria-pressed="false">{nombre}</button>
-      ))
-    }
+    {filtros.map(([clave, nombre]) => <button type="button" data-filtro={clave} aria-pressed="false">{nombre}</button>)}
   </div>
   <p
-    class="conteo"
+    class="solo"
     aria-live="polite"
     data-conteo
-    data-todos={conteoTodos}
-    data-parcial={conteoParcial}
-  >
-    {conteoTodos.replace('{total}', String(total))}
-  </p>
+    data-uno={t(lang, 'conteoUno')}
+    data-varios={t(lang, 'conteoVarios')}
+  ></p>
 
-  {
-    grupos.map((g) => (
-      <div class="grupo" data-reveal>
-        <h3>{g.titulo}</h3>
-        <ul>
-          {g.items.map((p) => {
-            const posicion = proyectos.indexOf(p);
-            const captura = capturaDe(p);
-            return (
-              <li class="item" data-item data-filtros={p.data.filtros.join(' ')}>
-                <a
-                  class="fila"
-                  href={rutaProyecto(lang, slugDe(p.id))}
-                  data-imagen={captura ?? FOTOS.concepcion}
-                >
-                  {captura && posicion < 3 && (
-                    <img class="fila-captura" src={captura} alt="" loading="lazy" decoding="async" />
-                  )}
-                  <span class="fila-nombre">{p.data.titulo}</span>
-                  <span class="fila-tipo">{p.data.resumen}</span>
-                  <span class="fila-anio">{p.data.anio}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    ))
-  }
+  <div class="grilla">
+    {proyectos.map((p, i) => <Tarjeta lang={lang} proyecto={p} prioridad={i < 2} />)}
+  </div>
 </section>

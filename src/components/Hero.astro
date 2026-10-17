@@ -1,40 +1,22 @@
 ---
 import { CV, GITHUB, LINKEDIN } from '../data/contacto';
-import { FOTOS } from '../data/creditos';
 import { t, type Lang } from '../i18n/ui';
-import BotonTema from './BotonTema.astro';
-import Franja from './Franja.astro';
-import SelectorIdioma from './SelectorIdioma.astro';
 
 interface Props {
   lang: Lang;
-  alternas: Record<Lang, string>;
 }
-const { lang, alternas } = Astro.props;
+const { lang } = Astro.props;
 ---
 
-<section class="hero" data-imagen={FOTOS.concepcion} aria-labelledby="hero-titulo">
-  <div class="hero-card">
-    <Franja />
-    <div class="hero-cuerpo">
-      <p class="marca-hero">{t(lang, 'marca')}</p>
-      <h1 id="hero-titulo" class="tit" data-reveal>
-        <span>{t(lang, 'heroTitular1')}</span>
-        <span>{t(lang, 'heroTitular2')}</span>
-      </h1>
-      <p class="medida" data-reveal>{t(lang, 'heroFrase')}</p>
-      <div class="hero-acciones" data-reveal>
-        <a class="boton" href="#proyectos">{t(lang, 'verProyectos')}</a>
-        <div class="hero-enlaces">
-          <a class="enlace" href={CV}>{t(lang, 'enlaceCv')}</a>
-          <a class="enlace" href={GITHUB} rel="noopener">{t(lang, 'enlaceGithub')}</a>
-          <a class="enlace" href={LINKEDIN} rel="noopener">{t(lang, 'enlaceLinkedin')}</a>
-        </div>
-      </div>
-    </div>
+<section class="hero contenedor" aria-labelledby="hero-titulo">
+  <h1 id="hero-titulo">{t(lang, 'marca')}</h1>
+  <p class="lead">{t(lang, 'heroLead')}</p>
+  <p class="medida">{t(lang, 'heroTexto')}</p>
+  <div class="hero-acciones">
+    <a class="boton" href="#proyectos">{t(lang, 'verProyectos')}</a>
+    <a class="enlace" href={CV} target="_blank" rel="noopener">{t(lang, 'enlaceCv')}</a>
+    <a class="enlace" href={GITHUB} rel="noopener">{t(lang, 'enlaceGithub')}</a>
+    <a class="enlace" href={LINKEDIN} rel="noopener">{t(lang, 'enlaceLinkedin')}</a>
   </div>
-  <div class="hero-ctl">
-    <SelectorIdioma lang={lang} alternas={alternas} />
-    <BotonTema lang={lang} />
-  </div>
+  <p class="hero-nota">{t(lang, 'heroDisponible')}</p>
 </section>

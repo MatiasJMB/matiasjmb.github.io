@@ -1,0 +1,15 @@
+---
+import { lista, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<section id="sobre-mi" class="seccion" aria-labelledby="sobre-mi-titulo">
+  <h2 id="sobre-mi-titulo" data-entra>{t(lang, 'sobreMiTitulo')}</h2>
+  <div class="medida texto">
+    {lista(lang, 'sobreMi').map((parrafo) => <p data-entra>{parrafo}</p>)}
+  </div>
+</section>

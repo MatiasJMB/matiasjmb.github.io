@@ -8,7 +8,7 @@ periodo: "ago 2026 – presente"
 anio: 2026
 stack: ["Node.js", "Express", "EJS", "MySQL", "bcrypt", "reCAPTCHA v3", "cPanel"]
 filtros: [node, mysql]
-imagen: "/capturas/cegas.png"
+imagen: "/capturas/cegas.webp"
 repo: null
 demo: "https://cegas.cl"
 privado: true
