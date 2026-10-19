@@ -55,6 +55,7 @@ const url = (ruta: string) => new URL(ruta, site).href;
         raiz.setAttribute('data-theme', tema);
       })();
     </script>
+    <script is:inline data-goatcounter="https://matiasjmb.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
     <a class="saltar" href="#contenido">{t(lang, 'saltar')}</a>
@@ -65,6 +66,7 @@ const url = (ruta: string) => new URL(ruta, site).href;
     <Pie lang={lang} />
     <script>
       import '../scripts/interacciones';
+      import '../scripts/analitica';
     </script>
   </body>
 </html>

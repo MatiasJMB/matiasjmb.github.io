@@ -19,4 +19,6 @@ npm run build
 - `public/valparaiso/`: fotos de la mitad fija. `public/capturas/<slug>.png`: capturas (opcionales).
 - `public/retrato.jpg` (opcional) y `public/og.jpg` (imagen para redes).
 
+Estadísticas de visitas y clics (GoatCounter): https://matiasjmb.goatcounter.com. Para no contarse uno mismo, abrir una vez `/#toggle-goatcounter` en cada navegador propio.
+
 El despliegue lo hace `.github/workflows/deploy.yml` al hacer push a `main`.
