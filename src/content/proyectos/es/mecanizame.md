@@ -13,6 +13,31 @@ repo: "https://github.com/MatiasJMB/mecanizame"
 demo: null
 privado: false
 orden: 6
+galeria:
+  - src: /capturas/galeria/mecanizame-clientes.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Ficha de un cliente con su vehículo e historial por patente"
+  - src: /capturas/galeria/mecanizame-ordenes.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Historial de órdenes de servicio"
+  - src: /capturas/galeria/mecanizame-servicios.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Catálogo de servicios por categoría, con precios editables"
+  - src: /capturas/galeria/mecanizame-finanzas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Finanzas: ingresos del período y por mes"
+  - src: /capturas/galeria/mecanizame-admin.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Panel super-admin con talleres, cobros e invitaciones"
+  - src: /capturas/galeria/mecanizame-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Resumen del taller en el celular"
 ---
 
 ## Problema

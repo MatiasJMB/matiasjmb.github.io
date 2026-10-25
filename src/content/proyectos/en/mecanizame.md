@@ -13,6 +13,31 @@ repo: "https://github.com/MatiasJMB/mecanizame"
 demo: null
 privado: false
 orden: 6
+galeria:
+  - src: /capturas/galeria/mecanizame-clientes.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Client record with their vehicle and history by plate"
+  - src: /capturas/galeria/mecanizame-ordenes.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Service order history"
+  - src: /capturas/galeria/mecanizame-servicios.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Service catalog by category, with editable prices"
+  - src: /capturas/galeria/mecanizame-finanzas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Finances: income for the period and by month"
+  - src: /capturas/galeria/mecanizame-admin.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Super-admin panel with workshops, billing and invitations"
+  - src: /capturas/galeria/mecanizame-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Workshop summary on a phone"
 ---
 
 ## Problem
