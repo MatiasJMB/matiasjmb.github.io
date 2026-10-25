@@ -70,6 +70,7 @@ const es = {
   privado: 'El código es privado por confidencialidad con el cliente.',
   siguiente: 'Siguiente proyecto:',
   altCaptura: 'Pantalla de inicio de {titulo}',
+  galeriaTitulo: 'Más pantallas',
 
   noEncontradoTitulo: 'Página no encontrada',
   noEncontradoTexto: 'La dirección no existe o cambió de lugar.',
@@ -109,7 +110,7 @@ const en: Ui = {
 
   sobreMiTitulo: 'About',
   sobreMi: [
-    'I studied Computer Engineering at Universidad de Playa Ancha and graduated in 2025. I work as an independent full stack developer: I gather requirements with each client, build the complete system and leave it running on their server.',
+    'I graduated in Civil Engineering in Computer Science from Universidad de Playa Ancha in 2025. I work as an independent full stack developer: I gather requirements with each client, build the complete system and leave it running on their server.',
     "I'm drawn to software that solves concrete business problems, such as certificates, work orders, maintenance or grades. I work mainly with Node.js, React and SQL, and I have also designed a serverless architecture on AWS.",
   ],
 
@@ -147,6 +148,7 @@ const en: Ui = {
   privado: 'The code is private to protect client confidentiality.',
   siguiente: 'Next project:',
   altCaptura: 'Home screen of {titulo}',
+  galeriaTitulo: 'More screens',
 
   noEncontradoTitulo: 'Page not found',
   noEncontradoTexto: 'The address does not exist or has moved.',

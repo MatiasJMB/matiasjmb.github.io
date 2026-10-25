@@ -86,6 +86,24 @@ const tituloLargo = d.titulo.length > 34;
       <Content />
     </div>
 
+    {
+      d.galeria.length > 0 && (
+        <section class="galeria" aria-labelledby="galeria-titulo">
+          <h2 id="galeria-titulo" data-entra>{t(lang, 'galeriaTitulo')}</h2>
+          <div class="galeria-grid">
+            {d.galeria.map((g) => (
+              <figure class:list={['galeria-fig', { vertical: g.ancho < g.alto }]} data-entra>
+                <div class="mat">
+                  <img src={g.src} width={g.ancho} height={g.alto} alt={g.pie} loading="lazy" decoding="async" />
+                </div>
+                <figcaption>{g.pie}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
     <nav class="ficha-pie" aria-label={t(lang, 'navProyectos')} data-entra>
       <a class="ficha-volver" href={`${rutaInicio(lang)}#proyectos`}>{t(lang, 'volver')}</a>
       {

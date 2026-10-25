@@ -1093,6 +1093,53 @@ html.js [data-entra].entra {
   background: none;
 }
 
+.galeria {
+  margin-top: 64px;
+}
+
+.galeria h2 {
+  margin-bottom: 24px;
+  font-size: var(--step-lead);
+  letter-spacing: 0;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 32px;
+}
+
+.galeria-fig {
+  min-width: 0;
+}
+
+.galeria-fig .mat img {
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.galeria-fig.vertical .mat {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.galeria-fig figcaption {
+  margin-top: 12px;
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.galeria-fig.vertical figcaption {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+@media (max-width: 700px) {
+  .galeria-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .siguiente {
   display: inline-block;
   font-size: var(--step-lead);

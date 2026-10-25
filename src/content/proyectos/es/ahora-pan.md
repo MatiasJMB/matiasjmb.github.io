@@ -13,6 +13,19 @@ repo: "https://github.com/MatiasJMB/ahora-pan"
 demo: null
 privado: false
 orden: 7
+galeria:
+  - src: /capturas/galeria/pan-alerta.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Aviso de nuevo pedido en el panel"
+  - src: /capturas/galeria/pan-pedido.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Pedido en preparación, con su código de retiro"
+  - src: /capturas/galeria/pan-confirmar.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Confirmación al marcar un pedido como listo"
 ---
 
 ## Problema

@@ -13,6 +13,15 @@ repo: null
 demo: null
 privado: true
 orden: 3
+galeria:
+  - src: /capturas/galeria/flota-ordenes.webp
+    ancho: 1000
+    alto: 1334
+    pie: "Historial de órdenes con búsqueda por patente"
+  - src: /capturas/galeria/flota-detalle.webp
+    ancho: 1000
+    alto: 1334
+    pie: "Detalle de una orden de trabajo"
 ---
 
 ## Problema

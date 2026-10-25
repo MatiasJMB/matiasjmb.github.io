@@ -13,6 +13,23 @@ repo: null
 demo: "https://cegas.cl"
 privado: true
 orden: 1
+galeria:
+  - src: /capturas/galeria/cegas-inspecciones.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Inspection log with its approval seal"
+  - src: /capturas/galeria/cegas-detalle.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Inspection detail with result and certificate"
+  - src: /capturas/galeria/cegas-certificados.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Issued certificates with sequential folio numbers"
+  - src: /capturas/galeria/cegas-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Inspection record on a phone"
 ---
 
 ## Problem
@@ -22,7 +39,7 @@ CEGAS is a body that inspects and certifies gas installations. It needed one pla
 ## Solution
 
 - I built the administrative web system with Node.js 20, Express, EJS and MySQL: clients, installations, inspections with a status traffic light, quotes, payments and a calendar.
-- I generate PDF certificates with sequential folio numbers and alerts for expiry at 24 months.
+- I built PDF certificates with sequential folio numbers and alerts for expiry at 24 months.
 - I implemented roles, a super-admin, support tickets, photo records and a change log.
 - I applied security measures: CSRF protection, helmet with CSP, bcrypt, login rate limiting, sessions stored in MySQL and automatic logout on inactivity.
 - I protected the site's two forms with reCAPTCHA v3, a honeypot and PHP filters.

@@ -13,6 +13,23 @@ repo: null
 demo: "https://cegas.cl"
 privado: true
 orden: 1
+galeria:
+  - src: /capturas/galeria/cegas-inspecciones.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Registro de inspecciones con su sello de aprobación"
+  - src: /capturas/galeria/cegas-detalle.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Detalle de una inspección con resultado y certificado"
+  - src: /capturas/galeria/cegas-certificados.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Certificados emitidos con folio correlativo"
+  - src: /capturas/galeria/cegas-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Ficha de una inspección en el celular"
 ---
 
 ## Problema

@@ -13,6 +13,19 @@ repo: "https://github.com/MatiasJMB/ahora-pan"
 demo: null
 privado: false
 orden: 7
+galeria:
+  - src: /capturas/galeria/pan-alerta.webp
+    ancho: 1600
+    alto: 1000
+    pie: "New order alert on the panel"
+  - src: /capturas/galeria/pan-pedido.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Order in preparation, with its pickup code"
+  - src: /capturas/galeria/pan-confirmar.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Confirmation when marking an order as ready"
 ---
 
 ## Problem

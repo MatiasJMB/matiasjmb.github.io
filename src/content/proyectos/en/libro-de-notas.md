@@ -13,6 +13,19 @@ repo: null
 demo: null
 privado: true
 orden: 5
+galeria:
+  - src: /capturas/galeria/libro-resumen.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Course summary: average, passed and at-risk students"
+  - src: /capturas/galeria/libro-planificacion.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Unit planning with available hours"
+  - src: /capturas/galeria/libro-horario.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Weekly timetable by blocks"
 ---
 
 ## Problem

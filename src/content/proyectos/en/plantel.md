@@ -13,6 +13,27 @@ repo: null
 demo: null
 privado: true
 orden: 2
+galeria:
+  - src: /capturas/galeria/plantel-reportes.webp
+    ancho: 1600
+    alto: 900
+    pie: "Monthly report of lateness, absences and overtime"
+  - src: /capturas/galeria/plantel-turnos.webp
+    ancho: 1600
+    alto: 900
+    pie: "Shifts for office, courses and field work"
+  - src: /capturas/galeria/plantel-ficha.webp
+    ancho: 1600
+    alto: 900
+    pie: "Person record with employment type"
+  - src: /capturas/galeria/plantel-solicitudes.webp
+    ancho: 1600
+    alto: 900
+    pie: "Leave and vacation requests"
+  - src: /capturas/galeria/plantel-marcar.webp
+    ancho: 780
+    alto: 1688
+    pie: "Clock-in from a phone, with location"
 ---
 
 ## Problem

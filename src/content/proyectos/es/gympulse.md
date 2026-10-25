@@ -21,8 +21,8 @@ Un gimnasio pierde socios que dejan de asistir, o su plan vence sin que nadie lo
 
 ## Solución
 
-- Detecto socios inactivos o con plan por vencer.
-- Envío avisos automáticos por WhatsApp con la API oficial de WhatsApp Cloud.
+- Construí la detección de socios inactivos o con plan por vencer.
+- Programé el envío de avisos automáticos por WhatsApp con la API oficial de WhatsApp Cloud.
 - Integré Mercado Pago.
 - Diseñé una arquitectura serverless en AWS con SAM: Lambda (Node 20), API Gateway HTTP, DynamoDB de tabla única, SQS y EventBridge Scheduler.
 - Usé Cognito para autenticación, S3 con CloudFront para el sitio y SSM Parameter Store para los secretos.

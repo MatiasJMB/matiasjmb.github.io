@@ -55,7 +55,7 @@ export const trayectoria = {
       grupo: 'Education',
       items: [
         {
-          titulo: 'Computer Engineering · Universidad de Playa Ancha',
+          titulo: 'Civil Engineering in Computer Science · Universidad de Playa Ancha',
           detalle: 'Graduated.',
           fecha: '2025',
         },

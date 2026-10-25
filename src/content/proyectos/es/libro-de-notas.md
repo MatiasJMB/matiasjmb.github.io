@@ -13,6 +13,19 @@ repo: null
 demo: null
 privado: true
 orden: 5
+galeria:
+  - src: /capturas/galeria/libro-resumen.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Resumen del curso: promedio, aprobados y estudiantes en riesgo"
+  - src: /capturas/galeria/libro-planificacion.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Planificación de unidades con horas disponibles"
+  - src: /capturas/galeria/libro-horario.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Horario semanal por bloques"
 ---
 
 ## Problema

@@ -21,8 +21,8 @@ A gym loses members who stop attending, or whose plan expires before anyone noti
 
 ## Solution
 
-- I detect inactive members and members whose plan is about to expire.
-- I send automatic WhatsApp messages through the official WhatsApp Cloud API.
+- I built the detection of inactive members and members whose plan is about to expire.
+- I scheduled automatic WhatsApp messages through the official WhatsApp Cloud API.
 - I integrated Mercado Pago.
 - I designed a serverless architecture on AWS with SAM: Lambda (Node 20), API Gateway HTTP, single-table DynamoDB, SQS and EventBridge Scheduler.
 - I used Cognito for authentication, S3 with CloudFront for the site, and SSM Parameter Store for secrets.

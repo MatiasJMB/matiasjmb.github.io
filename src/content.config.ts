@@ -20,6 +20,9 @@ const proyectos = defineCollection({
     demo: z.string().nullable(),
     privado: z.boolean(),
     orden: z.number(),
+    galeria: z
+      .array(z.object({ src: z.string(), ancho: z.number(), alto: z.number(), pie: z.string() }))
+      .default([]),
   }),
 });
 

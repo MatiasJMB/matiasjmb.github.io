@@ -17,14 +17,14 @@ orden: 4
 
 ## Problem
 
-A restaurant needs to record maintenance on its machines in the field and keep each machine's history at hand. The technician should be able to see a machine's record and log the work on the spot.
+A food service location needs to record maintenance on its machines in the field and keep each machine's history at hand. The technician should be able to see a machine's record and log the work on the spot.
 
 ## Solution
 
 - I built machine registration with a required photo, which generates a unique QR code.
 - In the field, the technician scans the code from a tablet and sees the record and its history.
 - I included maintenance logging and a task module with statuses, priority and a log.
-- I defined roles per location: manager, technician and location manager.
+- I defined roles per location: person in charge, technician and location manager.
 - I built the application with Express 5, MySQL, React, Vite, TypeScript and Tailwind CSS.
 
 ## Outcome

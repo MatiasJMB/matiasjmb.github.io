@@ -13,6 +13,27 @@ repo: null
 demo: null
 privado: true
 orden: 2
+galeria:
+  - src: /capturas/galeria/plantel-reportes.webp
+    ancho: 1600
+    alto: 900
+    pie: "Reporte mensual de atrasos, ausencias y horas extra"
+  - src: /capturas/galeria/plantel-turnos.webp
+    ancho: 1600
+    alto: 900
+    pie: "Turnos de oficina, cursos y faenas"
+  - src: /capturas/galeria/plantel-ficha.webp
+    ancho: 1600
+    alto: 900
+    pie: "Ficha de una persona con su vínculo"
+  - src: /capturas/galeria/plantel-solicitudes.webp
+    ancho: 1600
+    alto: 900
+    pie: "Solicitudes de permisos y vacaciones"
+  - src: /capturas/galeria/plantel-marcar.webp
+    ancho: 780
+    alto: 1688
+    pie: "Marcación desde el celular, con ubicación"
 ---
 
 ## Problema
