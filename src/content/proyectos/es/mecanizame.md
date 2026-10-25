@@ -12,7 +12,7 @@ imagen: "/capturas/mecanizame.webp"
 repo: "https://github.com/MatiasJMB/mecanizame"
 demo: null
 privado: false
-orden: 5
+orden: 6
 ---
 
 ## Problema

@@ -12,7 +12,7 @@ imagen: "/capturas/ahora-pan.webp"
 repo: "https://github.com/MatiasJMB/ahora-pan"
 demo: null
 privado: false
-orden: 6
+orden: 7
 ---
 
 ## Problema
