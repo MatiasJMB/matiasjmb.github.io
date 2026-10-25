@@ -13,6 +13,27 @@ repo: null
 demo: null
 privado: true
 orden: 4
+galeria:
+  - src: /capturas/galeria/mantencion-maquinas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Machine list with status and last maintenance"
+  - src: /capturas/galeria/mantencion-ficha-tablet.webp
+    ancho: 1000
+    alto: 1334
+    pie: "Machine record with its QR code and history, on a tablet"
+  - src: /capturas/galeria/mantencion-tareas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Open tasks with priority and status"
+  - src: /capturas/galeria/mantencion-tarea.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Task detail with actions and log"
+  - src: /capturas/galeria/mantencion-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Phone home screen with a shortcut to scan"
 ---
 
 ## Problem

@@ -13,6 +13,27 @@ repo: null
 demo: null
 privado: true
 orden: 4
+galeria:
+  - src: /capturas/galeria/mantencion-maquinas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Listado de máquinas con su estado y última mantención"
+  - src: /capturas/galeria/mantencion-ficha-tablet.webp
+    ancho: 1000
+    alto: 1334
+    pie: "Ficha de una máquina con su QR e historial, en tablet"
+  - src: /capturas/galeria/mantencion-tareas.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Tareas abiertas con prioridad y estado"
+  - src: /capturas/galeria/mantencion-tarea.webp
+    ancho: 1600
+    alto: 1000
+    pie: "Detalle de una tarea con sus acciones y bitácora"
+  - src: /capturas/galeria/mantencion-celular.webp
+    ancho: 780
+    alto: 1688
+    pie: "Inicio en el celular, con acceso directo para escanear"
 ---
 
 ## Problema
