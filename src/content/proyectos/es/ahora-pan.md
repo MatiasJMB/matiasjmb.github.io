@@ -12,7 +12,7 @@ imagen: "/capturas/ahora-pan.webp"
 repo: "https://github.com/MatiasJMB/ahora-pan"
 demo: null
 privado: false
-orden: 7
+orden: 8
 galeria:
   - src: /capturas/galeria/pan-alerta.webp
     ancho: 1600

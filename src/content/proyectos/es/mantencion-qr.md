@@ -12,7 +12,7 @@ imagen: "/capturas/mantencion-qr.webp"
 repo: null
 demo: null
 privado: true
-orden: 4
+orden: 5
 galeria:
   - src: /capturas/galeria/mantencion-maquinas.webp
     ancho: 1600

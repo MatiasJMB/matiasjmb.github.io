@@ -12,7 +12,7 @@ imagen: "/capturas/plataforma-flota.webp"
 repo: null
 demo: null
 privado: true
-orden: 3
+orden: 4
 galeria:
   - src: /capturas/galeria/flota-ordenes.webp
     ancho: 1000

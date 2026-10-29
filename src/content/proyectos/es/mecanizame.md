@@ -12,7 +12,7 @@ imagen: "/capturas/mecanizame.webp"
 repo: "https://github.com/MatiasJMB/mecanizame"
 demo: null
 privado: false
-orden: 6
+orden: 7
 galeria:
   - src: /capturas/galeria/mecanizame-clientes.webp
     ancho: 1600

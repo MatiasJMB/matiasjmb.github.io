@@ -12,7 +12,7 @@ imagen: "/capturas/plantel.webp"
 repo: null
 demo: null
 privado: true
-orden: 2
+orden: 3
 galeria:
   - src: /capturas/galeria/plantel-reportes.webp
     ancho: 1600

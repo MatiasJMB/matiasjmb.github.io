@@ -6,7 +6,7 @@ export const trayectoria = {
         {
           titulo: 'Desarrollador full stack freelance',
           detalle:
-            'Sistemas web a medida para CEGAS y clientes de servicio técnico, mantención de maquinaria y educación: del levantamiento de requerimientos al despliegue en producción.',
+            'Sistemas web a medida para CBPFOOD (auditorías sanitarias en servicios de alimentación), CEGAS y clientes de servicio técnico, mantención de maquinaria y educación: del levantamiento de requerimientos al despliegue en producción.',
           fecha: '2025 – presente',
         },
         {
@@ -40,7 +40,7 @@ export const trayectoria = {
         {
           titulo: 'Freelance full stack developer',
           detalle:
-            'Custom web systems for CEGAS and clients in technical service, machinery maintenance and education: from requirements gathering to production deployment.',
+            'Custom web systems for CBPFOOD (food safety audits in food services), CEGAS and clients in technical service, machinery maintenance and education: from requirements gathering to production deployment.',
           fecha: '2025 – present',
         },
         {
@@ -70,6 +70,6 @@ export const trayectoria = {
 };
 
 export const stack = {
-  es: 'JavaScript, TypeScript, Python y SQL · Node.js y Express · React, Vite y Tailwind CSS · MySQL, PostgreSQL y Supabase · AWS, Docker, Linux y cPanel.',
-  en: 'JavaScript, TypeScript, Python and SQL · Node.js and Express · React, Vite and Tailwind CSS · MySQL, PostgreSQL and Supabase · AWS, Docker, Linux and cPanel.',
+  es: 'JavaScript, TypeScript, Python y SQL · Node.js, Express y NestJS · React, Vue, Vite y Tailwind CSS · MySQL, PostgreSQL, Prisma y Supabase · AWS, Railway, Vercel, Docker, Linux y cPanel.',
+  en: 'JavaScript, TypeScript, Python and SQL · Node.js, Express and NestJS · React, Vue, Vite and Tailwind CSS · MySQL, PostgreSQL, Prisma and Supabase · AWS, Railway, Vercel, Docker, Linux and cPanel.',
 };

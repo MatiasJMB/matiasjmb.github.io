@@ -12,7 +12,7 @@ imagen: "/capturas/libro-de-notas.webp"
 repo: null
 demo: null
 privado: true
-orden: 5
+orden: 6
 galeria:
   - src: /capturas/galeria/libro-resumen.webp
     ancho: 1600

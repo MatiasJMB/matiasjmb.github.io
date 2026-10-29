@@ -12,7 +12,7 @@ imagen: "/capturas/cegas.webp"
 repo: null
 demo: "https://cegas.cl"
 privado: true
-orden: 1
+orden: 2
 galeria:
   - src: /capturas/galeria/cegas-inspecciones.webp
     ancho: 1600
